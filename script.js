@@ -1,195 +1,90 @@
-// ===============================
-// PIZZA STORE - SCRIPT.JS
-// ===============================
+let cart = [];
 
-// Food image switching
-const food = document.getElementById("food");
-const food1 = document.getElementById("food1");
-const food2 = document.getElementById("food2");
-const food3 = document.getElementById("food3");
-const food4 = document.getElementById("food4");
 
-if (food1) {
-    food1.addEventListener("click", () => {
-        food.style.backgroundImage = "url('food1.png')";
-    });
-}
-
-if (food2) {
-    food2.addEventListener("click", () => {
-        food.style.backgroundImage = "url('food2.png')";
-    });
-}
-
-if (food3) {
-    food3.addEventListener("click", () => {
-        food.style.backgroundImage = "url('food3.png')";
-    });
-}
-
-if (food4) {
-    food4.addEventListener("click", () => {
-        food.style.backgroundImage = "url('food4.png')";
+// HERO MENU BUTTON
+function scrollToMenu() {
+    document.getElementById("pizzaSection").scrollIntoView({
+        behavior: "smooth"
     });
 }
 
 
-// ===============================
-// LOGIN
-// ===============================
+// FOOD SELECTOR
+const foodImages = [
+    "food1.png",
+    "food2.png",
+    "food3.png",
+    "food4.png"
+];
 
-function openLoginModal() {
-    const modal = document.getElementById("loginModal");
+const heroImage = document.querySelector(".hero-image img");
 
-    if (modal) {
-        modal.style.display = "block";
-    }
-}
+document.querySelectorAll(".items div").forEach((item, index) => {
 
-function closeLoginModal() {
-    const modal = document.getElementById("loginModal");
+    item.addEventListener("click", function () {
 
-    if (modal) {
-        modal.style.display = "none";
-    }
-}
+        heroImage.src = foodImages[index];
 
-function login() {
-    const username = document.getElementById("modalUsername");
-    const password = document.getElementById("modalPassword");
+    });
 
-    if (!username || !password) {
-        return;
-    }
-
-    if (username.value === "admin" && password.value === "1234") {
-        alert("Login successful!");
-        closeLoginModal();
-    } else {
-        alert("Invalid credentials!");
-    }
-}
-
-
-// Close login modal when clicking outside
-window.addEventListener("click", function (event) {
-    const modal = document.getElementById("loginModal");
-
-    if (modal && event.target === modal) {
-        modal.style.display = "none";
-    }
 });
 
 
-// ===============================
-// CART
-// ===============================
+// ADD TO CART
+function addToCart(name, price) {
 
-const cart = [];
+    cart.push({
+        name: name,
+        price: price
+    });
 
-function updateCartDisplay() {
-    const cartSection = document.getElementById("cartSummary");
-    const itemList = document.getElementById("cartItems");
-    const totalDisplay = document.getElementById("cartTotal");
+    updateCart();
 
-    if (!cartSection || !itemList || !totalDisplay) {
-        return;
-    }
+    alert(name + " added to cart!");
+}
 
-    itemList.innerHTML = "";
+
+// UPDATE CART
+function updateCart() {
+
+    const cartSummary = document.getElementById("cartSummary");
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
+
+    cartItems.innerHTML = "";
 
     let total = 0;
 
-    cart.forEach(function (item) {
+    cart.forEach((item) => {
+
         const li = document.createElement("li");
 
-        li.textContent = `${item.name} - ₹${item.price}`;
+        li.textContent = item.name + " - ₹" + item.price;
 
-        itemList.appendChild(li);
+        cartItems.appendChild(li);
 
         total += item.price;
+
     });
 
-    totalDisplay.textContent = total;
+    cartTotal.textContent = total;
 
-    cartSection.style.display = cart.length > 0 ? "block" : "none";
+    if (cart.length > 0) {
+        cartSummary.style.display = "block";
+    } else {
+        cartSummary.style.display = "none";
+    }
 }
 
 
-// ===============================
-// PIZZA CARDS
-// ===============================
+// BUY NOW
+function buyNow(name, price) {
 
-document.addEventListener("DOMContentLoaded", function () {
+    alert(
+        "Order placed for " +
+        name +
+        " - ₹" +
+        price
+    );
 
-    const cards = document.querySelectorAll(".pizza-card");
-
-    cards.forEach(function (card) {
-
-        const titleElement = card.querySelector("h3");
-        const priceElement = card.querySelector("p");
-
-        if (!titleElement || !priceElement) {
-            return;
-        }
-
-        const title = titleElement.innerText;
-        const priceText = priceElement.innerText.replace(/[^\d]/g, "");
-        const price = parseInt(priceText);
-
-        // Add to Cart Button
-        const addToCartButton = document.createElement("button");
-
-        addToCartButton.textContent = "Add to Cart";
-
-        addToCartButton.className = "add-cart-btn";
-
-        addToCartButton.addEventListener("click", function () {
-
-            cart.push({
-                name: title,
-                price: price
-            });
-
-            updateCartDisplay();
-
-            alert(`${title} added to cart!`);
-        });
-
-
-        // Buy Now Button
-        const buyNowButton = document.createElement("button");
-
-        buyNowButton.textContent = "Buy Now";
-
-        buyNowButton.className = "buy-now-btn";
-
-        buyNowButton.addEventListener("click", function () {
-
-            const address = prompt(
-                `You're buying ${title} for ₹${price}.\n\nPlease enter your delivery address:`
-            );
-
-            if (address && address.trim() !== "") {
-
-                alert(
-                    `Order placed successfully!\n\n` +
-                    `Pizza: ${title}\n` +
-                    `Price: ₹${price}\n` +
-                    `Delivery Address: ${address}`
-                );
-
-            } else {
-
-                alert("Order cancelled. Address is required.");
-
-            }
-        });
-
-
-        card.appendChild(addToCartButton);
-        card.appendChild(buyNowButton);
-
-    });
-
-});
+}
