@@ -4,99 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Pizza Store</title>
+    <title>Pizz0 - Pizza Store</title>
 
+    <!-- Font Awesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- JavaScript -->
     <script src="script.js" defer></script>
 </head>
 
 <body>
 
-    <!-- =========================
-         NAVIGATION BAR
-    ========================== -->
+    <!-- NAVBAR -->
+    <header class="navbar">
 
-    <div class="main">
+        <div class="logo">pizz0</div>
 
-        <div class="navbar">
+        <ul class="nav-links">
+            <li>Tasty</li>
+            <li>Spicy</li>
+            <li>Delicious</li>
+            <li>Yummy</li>
+        </ul>
 
-            <div class="nav-1">
+        <div class="icons">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-bars"></i>
+        </div>
 
-                <div class="logo">pizz0</div>
+    </header>
 
-                <ul class="links">
-                    <li>Tasty</li>
-                    <li>Spicy</li>
-                    <li>Delicious</li>
-                    <li>Yummy</li>
-                </ul>
 
-            </div>
+    <!-- HERO SECTION -->
+    <section class="hero">
 
-            <div class="icons">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <i class="fa-solid fa-bars"></i>
-            </div>
+        <div class="hero-content">
+
+            <h3>Are You Hungry?</h3>
+
+            <h1>Don't Wait.</h1>
+
+            <p>Let's start to order food now</p>
+
+            <button class="menu-button"
+                    onclick="openLoginModal()">
+                Check Out Menu
+            </button>
 
         </div>
 
-
-        <!-- =========================
-             HERO SECTION
-        ========================== -->
-
-        <div class="hero">
-
-            <div class="left">
-
-                <span class="left1">
-                    Are You Hungry?
-                </span>
-
-                <span class="left2">
-                    Don't Wait.
-                </span>
-
-                <span class="left3">
-                    Let's start to order food now
-                </span>
-
-                <button class="left4"
-                        onclick="openLoginModal()">
-                    Check Out Menu
-                </button>
-
-            </div>
-
-
-            <div class="food" id="food"></div>
-
+        <div class="hero-image">
+            <img src="food1.png" alt="Delicious Pizza">
         </div>
 
-
-        <!-- =========================
-             FOOD SELECTOR
-        ========================== -->
-
-        <div class="items">
-
-            <div id="food1"></div>
-            <div id="food2"></div>
-            <div id="food3"></div>
-            <div id="food4"></div>
-
-        </div>
-
-    </div>
+    </section>
 
 
-    <!-- =========================
-         LOGIN MODAL
-    ========================== -->
+    <!-- FOOD SELECTOR -->
+    <section class="items">
 
+        <div id="food1"></div>
+        <div id="food2"></div>
+        <div id="food3"></div>
+        <div id="food4"></div>
+
+    </section>
+
+
+    <!-- LOGIN MODAL -->
     <div id="loginModal" class="modal">
 
         <div class="modal-content">
@@ -111,14 +90,12 @@
             <input
                 type="text"
                 id="modalUsername"
-                placeholder="Username"
-            >
+                placeholder="Username">
 
             <input
                 type="password"
                 id="modalPassword"
-                placeholder="Password"
-            >
+                placeholder="Password">
 
             <button onclick="login()">
                 Login
@@ -129,327 +106,146 @@
     </div>
 
 
-    <!-- =========================
-         PIZZA SECTION
-    ========================== -->
-
-    <section id="pizzaSection">
+    <!-- PIZZA SECTION -->
+    <section id="pizzaSection" class="pizza-section">
 
         <h2>🍕 Our Pizzas</h2>
 
         <div class="pizza-grid">
 
-
-            <!-- Pizza 1 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868918.jpg"
-                    alt="Margherita"
-                >
-
+                <img src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868918.jpg"
+                     alt="Margherita">
                 <h3>Margherita</h3>
-
                 <p>₹199</p>
-
             </div>
 
-
-            <!-- Pizza 2 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/free-photo/thinly-sliced-pepperoni-is-popular-pizza-topping-american-style-pizzerias-isolated-white-background-still-life_639032-229.jpg"
-                    alt="Farmhouse"
-                >
-
+                <img src="https://img.freepik.com/free-photo/thinly-sliced-pepperoni-is-popular-pizza-topping-american-style-pizzerias-isolated-white-background-still-life_639032-229.jpg"
+                     alt="Farmhouse">
                 <h3>Farmhouse</h3>
-
                 <p>₹249</p>
-
             </div>
 
-
-            <!-- Pizza 3 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/free-photo/delicious-italian-pizza-with-tomato-olives-pepperoni-mushrooms-top-view-isolated-white-background-still-life-copy-space_639032-299.jpg"
-                    alt="Peppy Paneer"
-                >
-
+                <img src="https://img.freepik.com/free-photo/delicious-italian-pizza-with-tomato-olives-pepperoni-mushrooms-top-view-isolated-white-background-still-life-copy-space_639032-299.jpg"
+                     alt="Peppy Paneer">
                 <h3>Peppy Paneer</h3>
-
                 <p>₹299</p>
-
             </div>
 
-
-            <!-- Pizza 4 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868964.jpg"
-                    alt="Veggie Delight"
-                >
-
+                <img src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868964.jpg"
+                     alt="Veggie Delight">
                 <h3>Veggie Delight</h3>
-
                 <p>₹269</p>
-
             </div>
 
-
-            <!-- Pizza 5 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/premium-photo/isolated-pizza-with-mushrooms-tomatoes_219193-8122.jpg"
-                    alt="Spicy Chicken"
-                >
-
+                <img src="https://img.freepik.com/premium-photo/isolated-pizza-with-mushrooms-tomatoes_219193-8122.jpg"
+                     alt="Spicy Chicken">
                 <h3>Spicy Chicken</h3>
-
                 <p>₹329</p>
-
             </div>
 
-
-            <!-- Pizza 6 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/premium-photo/pepperoni-pizza-cheese-pizza-food-pizza-pizza-pepperoni-mozzarella-mozzarella-cheese-cheese_812450-2.jpg"
-                    alt="Pepperoni"
-                >
-
+                <img src="https://img.freepik.com/premium-photo/pepperoni-pizza-cheese-pizza-food-pizza-pizza-pepperoni-mozzarella-mozzarella-cheese-cheese_812450-2.jpg"
+                     alt="Pepperoni">
                 <h3>Pepperoni</h3>
-
                 <p>₹620</p>
-
             </div>
 
-
-            <!-- Pizza 7 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/premium-psd/delicious-fast-food-burger-pizza-png-highquality-transparent-image-stock-commercial-use_1093584-252.jpg"
-                    alt="Cheese Burst"
-                >
-
+                <img src="https://img.freepik.com/premium-psd/delicious-fast-food-burger-pizza-png-highquality-transparent-image-stock-commercial-use_1093584-252.jpg"
+                     alt="Cheese Burst">
                 <h3>Cheese Burst</h3>
-
                 <p>₹589</p>
-
             </div>
 
-
-            <!-- Pizza 8 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/premium-photo/fresh-pizza-wooden-board-isolated-white_93675-109645.jpg"
-                    alt="Kudaval"
-                >
-
+                <img src="https://img.freepik.com/premium-photo/fresh-pizza-wooden-board-isolated-white_93675-109645.jpg"
+                     alt="Kudaval">
                 <h3>Kudaval</h3>
-
                 <p>₹450</p>
-
             </div>
 
-
-            <!-- Pizza 9 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/premium-photo/isolated-pizza-with-meat-vegetables-white_219193-5970.jpg"
-                    alt="Ketharin"
-                >
-
+                <img src="https://img.freepik.com/premium-photo/isolated-pizza-with-meat-vegetables-white_219193-5970.jpg"
+                     alt="Ketharin">
                 <h3>Ketharin</h3>
-
                 <p>₹600</p>
-
             </div>
 
-
-            <!-- Pizza 10 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/premium-psd/delicious-fast-food-burger-pizza-png-highquality-transparent-image-stock-commercial-use_1093584-233.jpg"
-                    alt="Belgium Choco"
-                >
-
+                <img src="https://img.freepik.com/premium-psd/delicious-fast-food-burger-pizza-png-highquality-transparent-image-stock-commercial-use_1093584-233.jpg"
+                     alt="Belgium Choco">
                 <h3>Belgium Choco</h3>
-
                 <p>₹567</p>
-
             </div>
 
-
-            <!-- Pizza 11 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/premium-photo/fresh-pizza-wooden-board-isolated-white_93675-111113.jpg"
-                    alt="Kunafa"
-                >
-
+                <img src="https://img.freepik.com/premium-photo/fresh-pizza-wooden-board-isolated-white_93675-111113.jpg"
+                     alt="Kunafa">
                 <h3>Kunafa</h3>
-
                 <p>₹500</p>
-
             </div>
 
-
-            <!-- Pizza 12 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/premium-photo/ham-pizza_163782-2493.jpg"
-                    alt="Japanese"
-                >
-
+                <img src="https://img.freepik.com/premium-photo/ham-pizza_163782-2493.jpg"
+                     alt="Japanese">
                 <h3>Japanese</h3>
-
                 <p>₹350</p>
-
             </div>
 
-
-            <!-- Pizza 13 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/free-photo/pizza-with-cheese-tomato-isolated-white-background-pizza-margarita-top-view-photo-menu_639032-301.jpg"
-                    alt="Chenidu"
-                >
-
+                <img src="https://img.freepik.com/free-photo/pizza-with-cheese-tomato-isolated-white-background-pizza-margarita-top-view-photo-menu_639032-301.jpg"
+                     alt="Chenidu">
                 <h3>Chenidu</h3>
-
                 <p>₹432</p>
-
             </div>
 
-
-            <!-- Pizza 14 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868918.jpg"
-                    alt="Premium Pulp"
-                >
-
+                <img src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868918.jpg"
+                     alt="Premium Pulp">
                 <h3>Premium Pulp</h3>
-
                 <p>₹680</p>
-
             </div>
 
-
-            <!-- Pizza 15 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/premium-photo/isolated-pizza-with-minced-meat-tomatoes_219193-8131.jpg"
-                    alt="Neapolitan"
-                >
-
+                <img src="https://img.freepik.com/premium-photo/isolated-pizza-with-minced-meat-tomatoes_219193-8131.jpg"
+                     alt="Neapolitan">
                 <h3>Neapolitan</h3>
-
                 <p>₹800</p>
-
             </div>
 
-
-            <!-- Pizza 16 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/free-photo/chicken-pizza-with-bell-pepper-olives_140725-7233.jpg"
-                    alt="New York Pizza"
-                >
-
+                <img src="https://img.freepik.com/free-photo/chicken-pizza-with-bell-pepper-olives_140725-7233.jpg"
+                     alt="New York Pizza">
                 <h3>New York Pizza</h3>
-
                 <p>₹678</p>
-
             </div>
 
-
-            <!-- Pizza 17 -->
-
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/premium-photo/popular-pizza-topping-american-style-pizzerias-white_135427-4403.jpg"
-                    alt="Bagel Pizza"
-                >
-
+                <img src="https://img.freepik.com/premium-photo/popular-pizza-topping-american-style-pizzerias-white_135427-4403.jpg"
+                     alt="Bagel Pizza">
                 <h3>Bagel Pizza</h3>
-
                 <p>₹390</p>
-
             </div>
-
-
-            <!-- Pizza 18 -->
 
             <div class="pizza-card">
-
-                <img
-                    src="https://img.freepik.com/free-psd/delicious-mushroom-tomato-pizza-slices_191095-84144.jpg"
-                    alt="Baked Ziti"
-                >
-
+                <img src="https://img.freepik.com/free-psd/delicious-mushroom-tomato-pizza-slices_191095-84144.jpg"
+                     alt="Baked Ziti">
                 <h3>Baked Ziti</h3>
-
                 <p>₹321</p>
-
             </div>
-
-        </div>
-
-
-        <!-- Today's Specials -->
-
-        <div class="specials-container">
-
-            <button
-                class="specials-button"
-                onclick="goToHomepage()">
-                Today's Specials
-            </button>
 
         </div>
 
     </section>
 
 
-    <!-- =========================
-         CART SUMMARY
-    ========================== -->
-
-    <div id="cartSummary">
+    <!-- CART SUMMARY -->
+    <section id="cartSummary">
 
         <h2>🛒 Cart Summary</h2>
 
@@ -459,7 +255,7 @@
             Total: ₹<span id="cartTotal">0</span>
         </h3>
 
-    </div>
+    </section>
 
 </body>
 </html>
