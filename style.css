@@ -1,7 +1,7 @@
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -10,291 +10,216 @@ html {
 
 body {
     font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    color: #222;
+    background: #f7f7f7;
 }
 
 
-/* =========================
-   NAVBAR
-========================= */
+/* NAVBAR */
 
 .navbar {
     height: 70px;
-    padding: 0 7%;
-    background: #111827;
-    color: white;
-
+    background: #061329;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    padding: 0 8%;
+    color: white;
 }
 
 .logo {
     font-size: 30px;
-    font-weight: 800;
+    font-weight: bold;
     color: orange;
-    letter-spacing: -1px;
 }
 
 .logo span {
     color: white;
 }
 
-.nav-links {
+.navbar nav {
     display: flex;
-    gap: 35px;
-    list-style: none;
+    gap: 40px;
 }
 
-.nav-links li {
+.navbar nav a {
     color: white;
+    text-decoration: none;
     font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
 }
 
-.nav-links li:hover {
-    color: orange;
-}
-
-.icons {
+.nav-icons {
     display: flex;
-    gap: 25px;
-    font-size: 20px;
-}
-
-.icons i {
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.icons i:hover {
-    color: orange;
+    gap: 20px;
+    font-size: 25px;
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero {
-    min-height: 480px;
-    padding: 50px 8%;
+    min-height: 430px;
 
     background:
         linear-gradient(
-            120deg,
-            #111827,
-            #4a2508
+            90deg,
+            #071329,
+            #251719,
+            #51220e
         );
-
-    color: white;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    gap: 50px;
+    padding: 40px 11%;
+    color: white;
 }
 
 .hero-content {
     max-width: 550px;
 }
 
-.hero-content h3 {
-    font-size: 28px;
+.small-title {
+    font-size: 23px;
+    font-weight: bold;
     font-style: italic;
     margin-bottom: 10px;
 }
 
-.hero-content h1 {
-    font-size: 65px;
-    line-height: 1;
-    margin-bottom: 15px;
+.hero h1 {
+    font-size: 52px;
+    margin-bottom: 12px;
 }
 
-.hero-content p {
+.subtitle {
     color: orange;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 25px;
 }
 
-.menu-button {
+.hero button {
     border: none;
     background: orange;
     color: white;
-
     padding: 13px 25px;
-
     border-radius: 25px;
-
     font-weight: bold;
     cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.menu-button:hover {
-    background: #e67e00;
-    transform: scale(1.05);
 }
 
 
-/* =========================
-   HERO PIZZA
-========================= */
+/* HERO IMAGE */
 
-.hero-image {
-    width: 390px;
-    height: 390px;
+.hero-image-container {
+    width: 300px;
+    height: 300px;
 
+    border: 4px solid white;
     border-radius: 50%;
+
+    overflow: hidden;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    overflow: hidden;
-
-    border: 5px solid white;
-
-    background: rgba(255,255,255,0.05);
+    flex-shrink: 0;
 }
 
-.hero-image img {
+.hero-image-container img {
     width: 100%;
     height: 100%;
 
     object-fit: cover;
 
-    border-radius: 50%;
+    display: block;
 }
 
 
-/* =========================
-   FOOD SELECTOR
-========================= */
+/* SLIDER DOTS */
 
-.items {
-    min-height: 100px;
+.slider-dots {
+    height: 85px;
+
+    background: #061329;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    gap: 22px;
-
-    padding: 20px;
-
-    background: #111827;
+    gap: 18px;
 }
 
-.food-option {
-    width: 65px;
-    height: 65px;
+.dot {
+    width: 50px;
+    height: 50px;
 
     border-radius: 50%;
 
     border: 3px solid white;
 
-    background-size: cover;
-    background-position: center;
+    background: transparent;
 
     cursor: pointer;
-
-    transition: 0.3s;
 }
 
-.food-option:hover,
-.food-option.active {
-    transform: scale(1.12);
+.dot.active {
     border-color: orange;
 }
 
-.food-option:nth-child(1) {
-    background-image: url("food1.png");
-}
 
-.food-option:nth-child(2) {
-    background-image: url("food2.png");
-}
+/* MENU */
 
-.food-option:nth-child(3) {
-    background-image: url("food3.png");
-}
-
-.food-option:nth-child(4) {
-    background-image: url("food4.png");
-}
-
-
-/* =========================
-   PIZZA SECTION
-========================= */
-
-.pizza-section {
+.menu {
     padding: 45px 7%;
-    background: #f5f5f5;
+    background: #f8f8f8;
 }
 
-.pizza-section h2 {
+.menu h2 {
     text-align: center;
-    font-size: 32px;
+    font-size: 30px;
     margin-bottom: 35px;
+    color: #222;
 }
 
 
-/* =========================
-   PIZZA GRID
-========================= */
+/* PIZZA GRID */
 
-.pizza-grid {
+.pizza-container {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit, minmax(210px, 1fr));
+        repeat(5, 1fr);
 
-    gap: 25px;
+    gap: 18px;
 }
 
 
-/* =========================
-   PIZZA CARD
-========================= */
+/* CARD */
 
 .pizza-card {
     background: white;
 
-    padding: 15px;
+    border-radius: 12px;
 
-    border-radius: 14px;
+    padding: 12px;
 
     text-align: center;
 
     box-shadow:
-        0 4px 15px rgba(0,0,0,0.12);
+        0 3px 12px rgba(0,0,0,0.08);
 
     transition: 0.3s;
-
-    overflow: hidden;
 }
 
 .pizza-card:hover {
-    transform: translateY(-7px);
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,0.18);
+    transform: translateY(-5px);
 }
 
 .pizza-card img {
     width: 100%;
-    height: 180px;
+    height: 170px;
 
     object-fit: cover;
 
@@ -302,159 +227,89 @@ body {
 }
 
 .pizza-card h3 {
-    margin-top: 13px;
-    margin-bottom: 7px;
-    font-size: 18px;
+    margin-top: 10px;
+    font-size: 17px;
 }
 
 .pizza-card p {
     color: orange;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
-    margin-bottom: 8px;
+
+    margin: 7px 0;
 }
 
-
-/* =========================
-   BUTTONS
-========================= */
-
-.card-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    gap: 7px;
-
-    margin-top: 8px;
-}
-
-.card-buttons button {
-    border: none;
-
-    padding: 9px 12px;
-
-    border-radius: 20px;
-
+.pizza-card button {
     background: orange;
     color: white;
 
-    font-size: 12px;
-    font-weight: bold;
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 18px;
 
     cursor: pointer;
 
-    transition: 0.3s;
+    font-size: 12px;
 }
 
-.card-buttons button:hover {
-    background: #e67e00;
-    transform: scale(1.05);
-}
-
-.card-buttons .buy {
-    background: #111827;
-}
-
-.card-buttons .buy:hover {
-    background: #333;
+.pizza-card .buy {
+    background: #061329;
 }
 
 
-/* =========================
-   CART
-========================= */
+/* RESPONSIVE */
 
-#cartSummary {
-    display: none;
+@media (max-width: 1000px) {
 
-    margin: 40px 7%;
-    padding: 25px;
-
-    background: white;
-
-    border-radius: 14px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,0.12);
-}
-
-#cartSummary h2 {
-    margin-bottom: 15px;
-}
-
-#cartItems {
-    padding-left: 20px;
-    margin-bottom: 15px;
-}
-
-#cartItems li {
-    margin-bottom: 8px;
-}
-
-#cartTotal {
-    color: orange;
-}
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 768px) {
-
-    .navbar {
-        padding: 0 5%;
+    .pizza-container {
+        grid-template-columns:
+            repeat(3, 1fr);
     }
 
-    .nav-links {
+    .hero {
+        padding: 40px 6%;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .navbar nav {
         display: none;
     }
 
     .hero {
         flex-direction: column;
         text-align: center;
-        padding: 50px 5%;
+        gap: 35px;
     }
 
-    .hero-content h1 {
-        font-size: 48px;
+    .hero h1 {
+        font-size: 40px;
     }
 
-    .hero-image {
-        width: 280px;
-        height: 280px;
+    .hero-image-container {
+        width: 230px;
+        height: 230px;
     }
 
-    .pizza-grid {
+    .pizza-container {
         grid-template-columns:
             repeat(2, 1fr);
-
-        gap: 15px;
-    }
-
-    .pizza-card img {
-        height: 150px;
     }
 }
 
 
-@media (max-width: 480px) {
+@media (max-width: 450px) {
 
-    .pizza-grid {
+    .pizza-container {
         grid-template-columns: 1fr;
     }
 
-    .hero-content h1 {
-        font-size: 42px;
-    }
-
-    .hero-content h3 {
-        font-size: 23px;
-    }
-
-    .hero-image {
-        width: 240px;
-        height: 240px;
+    .dot {
+        width: 40px;
+        height: 40px;
     }
 }
