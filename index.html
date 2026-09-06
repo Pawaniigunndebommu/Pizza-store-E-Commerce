@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -103,61 +101,29 @@
 </section>
 
 
-<!-- ================= 4 SLIDER ROUNDS ================= -->
+<!-- ================= SLIDER ROUNDS ================= -->
 
 <div class="slider-dots">
 
     <button
         class="dot active"
         data-image="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80">
-        <img
-            src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=200&q=80"
-            alt="Pizza 1"
-        >
     </button>
-
 
     <button
         class="dot"
         data-image="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80">
-        <img
-            src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=200&q=80"
-            alt="Pizza 2"
-        >
     </button>
 
-
-    <!-- ================= 3RD CIRCLE FIX ================= -->
-
-    <button
-        class="dot"
-        data-image="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80"
-        style="overflow:hidden;padding:0;">
-
-        <img
-            src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=200&q=80"
-            alt="Pizza 3"
-            style="
-                width:100%;
-                height:100%;
-                object-fit:cover;
-                border-radius:50%;
-                display:block;
-            "
-        >
-
-    </button>
-
-
+    <!-- FIXED 3RD IMAGE -->
     <button
         class="dot"
         data-image="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=700&q=80">
+    </button>
 
-        <img
-            src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=200&q=80"
-            alt="Pizza 4"
-        >
-
+    <button
+        class="dot"
+        data-image="https://images.unsplash.com/photo-1593560708920-61dd98c8a48b?auto=format&fit=crop&w=700&q=80">
     </button>
 
 </div>
@@ -747,222 +713,256 @@
 <div id="message"></div>
 
 
-<!-- =====================================================
-     JAVASCRIPT
-     ===================================================== -->
+<!-- ================= JAVASCRIPT ================= -->
 
 <script>
 
-let cart = [];
+document.addEventListener("DOMContentLoaded", function () {
 
+    /* ================= SLIDER ================= */
 
-/* ================= CART OPEN ================= */
+    const heroImg = document.getElementById("heroImg");
+    const dots = document.querySelectorAll(".dot");
 
-document.getElementById("cartBtn").addEventListener("click", function () {
+    dots.forEach(function(dot) {
 
-    document.getElementById("cartPanel").classList.add("active");
+        dot.addEventListener("click", function() {
 
-});
+            const image = this.getAttribute("data-image");
 
+            heroImg.src = image;
 
-/* ================= CART CLOSE ================= */
+            dots.forEach(function(item) {
+                item.classList.remove("active");
+            });
 
-document.getElementById("closeCart").addEventListener("click", function () {
-
-    document.getElementById("cartPanel").classList.remove("active");
-
-});
-
-
-/* ================= ADD TO CART ================= */
-
-function addToCart(name, price) {
-
-    const existingItem = cart.find(function (item) {
-
-        return item.name === name;
-
-    });
-
-
-    if (existingItem) {
-
-        existingItem.quantity++;
-
-    } else {
-
-        cart.push({
-
-            name: name,
-
-            price: price,
-
-            quantity: 1
+            this.classList.add("active");
 
         });
 
-    }
+    });
 
 
-    updateCart();
+    /* ================= CART ================= */
 
-    document.getElementById("cartPanel").classList.add("active");
-
-}
+    let cart = [];
 
 
-/* ================= BUY NOW ================= */
-
-function buyNow(name, price) {
-
-    cart = [
-
-        {
-
-            name: name,
-
-            price: price,
-
-            quantity: 1
-
-        }
-
-    ];
-
-
-    updateCart();
-
-    document.getElementById("cartPanel").classList.add("active");
-
-}
-
-
-/* ================= UPDATE CART ================= */
-
-function updateCart() {
+    const cartBtn = document.getElementById("cartBtn");
+    const cartPanel = document.getElementById("cartPanel");
+    const closeCart = document.getElementById("closeCart");
 
     const cartItems = document.getElementById("cartItems");
-
     const cartTotal = document.getElementById("cartTotal");
-
     const cartCount = document.getElementById("cartCount");
 
 
-    cartItems.innerHTML = "";
+    /* OPEN CART */
 
+    cartBtn.addEventListener("click", function() {
 
-    let total = 0;
-
-    let count = 0;
-
-
-    if (cart.length === 0) {
-
-        cartItems.innerHTML =
-            '<p class="empty-cart">Your cart is empty.</p>';
-
-    }
-
-
-    cart.forEach(function (item, index) {
-
-        total += item.price * item.quantity;
-
-        count += item.quantity;
-
-
-        const div = document.createElement("div");
-
-        div.className = "cart-item";
-
-
-        div.innerHTML = `
-
-            <div>
-
-                <h4>${item.name}</h4>
-
-                <p>₹${item.price} × ${item.quantity}</p>
-
-            </div>
-
-            <div>
-
-                <button onclick="decreaseItem(${index})">
-                    −
-                </button>
-
-                <span>
-                    ${item.quantity}
-                </span>
-
-                <button onclick="increaseItem(${index})">
-                    +
-                </button>
-
-                <button onclick="removeItem(${index})">
-                    ✕
-                </button>
-
-            </div>
-
-        `;
-
-
-        cartItems.appendChild(div);
+        cartPanel.classList.add("active");
 
     });
 
 
-    cartTotal.textContent = total;
+    /* CLOSE CART */
 
-    cartCount.textContent = count;
+    closeCart.addEventListener("click", function() {
 
-}
+        cartPanel.classList.remove("active");
 
-
-/* ================= INCREASE ================= */
-
-function increaseItem(index) {
-
-    cart[index].quantity++;
-
-    updateCart();
-
-}
+    });
 
 
-/* ================= DECREASE ================= */
+    /* ADD TO CART */
 
-function decreaseItem(index) {
+    window.addToCart = function(name, price) {
 
-    cart[index].quantity--;
+        const existingItem = cart.find(function(item) {
+
+            return item.name === name;
+
+        });
 
 
-    if (cart[index].quantity <= 0) {
+        if (existingItem) {
 
-        cart.splice(index, 1);
+            existingItem.quantity++;
+
+        } else {
+
+            cart.push({
+
+                name: name,
+                price: price,
+                quantity: 1
+
+            });
+
+        }
+
+
+        updateCart();
+
+        showMessage(name + " added to cart!");
+
+    };
+
+
+    /* UPDATE CART */
+
+    function updateCart() {
+
+        cartItems.innerHTML = "";
+
+        let total = 0;
+        let count = 0;
+
+
+        if (cart.length === 0) {
+
+            cartItems.innerHTML =
+                '<p class="empty-cart">Your cart is empty.</p>';
+
+        }
+
+
+        cart.forEach(function(item, index) {
+
+            total += item.price * item.quantity;
+
+            count += item.quantity;
+
+
+            const itemDiv = document.createElement("div");
+
+            itemDiv.className = "cart-item";
+
+
+            itemDiv.innerHTML = `
+
+                <div>
+
+                    <h4>${item.name}</h4>
+
+                    <p>
+                        ₹${item.price} × ${item.quantity}
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <button onclick="decreaseItem(${index})">−</button>
+
+                    <button onclick="increaseItem(${index})">+</button>
+
+                    <button onclick="removeItem(${index})">✕</button>
+
+                </div>
+
+            `;
+
+
+            cartItems.appendChild(itemDiv);
+
+        });
+
+
+        cartTotal.textContent = total;
+
+        cartCount.textContent = count;
 
     }
 
 
-    updateCart();
+    /* INCREASE */
 
-}
+    window.increaseItem = function(index) {
 
+        cart[index].quantity++;
 
-/* ================= REMOVE ================= */
+        updateCart();
 
-function removeItem(index) {
-
-    cart.splice(index, 1);
-
-    updateCart();
-
-}
+    };
 
 
-/* ======
-});
+    /* DECREASE */
 
-</script>
+    window.decreaseItem = function(index) {
+
+        cart[index].quantity--;
+
+        if (cart[index].quantity <= 0) {
+
+            cart.splice(index, 1);
+
+        }
+
+        updateCart();
+
+    };
+
+
+    /* REMOVE */
+
+    window.removeItem = function(index) {
+
+        cart.splice(index, 1);
+
+        updateCart();
+
+    };
+
+
+    /* BUY NOW */
+
+    window.buyNow = function(name, price) {
+
+        cart = [
+
+            {
+                name: name,
+                price: price,
+                quantity: 1
+            }
+
+        ];
+
+        updateCart();
+
+        cartPanel.classList.add("active");
+
+    };
+
+
+    /* CHECKOUT */
+
+    window.checkout = function() {
+
+        if (cart.length === 0) {
+
+            showMessage("Your cart is empty!");
+
+            return;
+
+        }
+
+
+        showMessage("Order placed successfully! 🍕");
+
+        cart = [];
+
+        updateCart();
+
+    };
+
+
+    /* MESSAGE */
+
+    function showMessage(text) {
+
+        const message = document.getElementById("message");
+
+        message.textConte
