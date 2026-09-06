@@ -4,27 +4,28 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background: #f5f5f5;
     color: #222;
 }
 
 
-/* =========================
-   NAVBAR
-========================= */
+/* NAVBAR */
 
 .navbar {
     height: 70px;
     padding: 0 7%;
-    background-color: #111;
+    background: #111;
+    color: white;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    color: white;
 }
 
 .logo {
@@ -36,16 +37,13 @@ body {
 .nav-links {
     display: flex;
     gap: 35px;
-
     list-style: none;
 }
 
 .nav-links li {
     color: white;
-    cursor: pointer;
     font-weight: bold;
-
-    transition: 0.3s;
+    cursor: pointer;
 }
 
 .nav-links li:hover {
@@ -60,7 +58,6 @@ body {
 
 .icons i {
     cursor: pointer;
-    transition: 0.3s;
 }
 
 .icons i:hover {
@@ -68,27 +65,19 @@ body {
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero {
-    min-height: 430px;
-
+    min-height: 450px;
     padding: 50px 8%;
 
-    background: linear-gradient(
-        120deg,
-        #111,
-        #3d2100
-    );
+    background: linear-gradient(120deg, #111, #3d2100);
 
     color: white;
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
+    justify-content: space-around;
     gap: 50px;
 }
 
@@ -99,11 +88,11 @@ body {
 .hero-content h3 {
     font-size: 28px;
     font-style: italic;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .hero-content h1 {
-    font-size: 62px;
+    font-size: 65px;
     margin-bottom: 10px;
 }
 
@@ -114,30 +103,23 @@ body {
 }
 
 .menu-button {
-    background-color: orange;
+    background: orange;
     color: white;
-
     border: none;
 
     padding: 13px 25px;
-
     border-radius: 25px;
 
     font-weight: bold;
-
     cursor: pointer;
-
-    transition: 0.3s;
 }
 
 .menu-button:hover {
-    background-color: #e67e00;
+    background: #e67e00;
 }
 
 
-/* =========================
-   HERO IMAGE
-========================= */
+/* HERO IMAGE */
 
 .hero-image {
     width: 400px;
@@ -149,33 +131,26 @@ body {
 }
 
 .hero-image img {
-    width: 380px;
-    height: 380px;
+    width: 100%;
+    height: 100%;
 
-    object-fit: cover;
+    object-fit: contain;
 
     border-radius: 50%;
-
     border: 5px solid white;
-
-    box-shadow: 0 5px 25px rgba(0,0,0,0.4);
 }
 
 
-/* =========================
-   FOOD SELECTOR
-========================= */
+/* FOOD SELECTOR */
 
 .items {
     display: flex;
-
     justify-content: center;
-
     gap: 20px;
 
-    padding: 20px;
+    padding: 25px;
 
-    background-color: #111;
+    background: #111;
 }
 
 .items div {
@@ -190,13 +165,6 @@ body {
     background-position: center;
 
     border: 3px solid white;
-
-    transition: 0.3s;
-}
-
-.items div:hover {
-    transform: scale(1.1);
-    border-color: orange;
 }
 
 #food1 {
@@ -216,45 +184,35 @@ body {
 }
 
 
-/* =========================
-   PIZZA SECTION
-========================= */
+/* PIZZA SECTION */
 
 #pizzaSection {
     padding: 45px 7%;
-
-    background-color: #f5f5f5;
+    background: #f5f5f5;
 }
 
 #pizzaSection h2 {
     text-align: center;
-
     font-size: 32px;
-
     margin-bottom: 35px;
 }
 
 
-/* =========================
-   PIZZA GRID
-========================= */
+/* GRID */
 
 .pizza-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
 
-    gap: 22px;
+    gap: 25px;
 }
 
 
-/* =========================
-   PIZZA CARD
-========================= */
+/* CARD */
 
 .pizza-card {
-    background-color: white;
+    background: white;
 
     padding: 15px;
 
@@ -262,8 +220,7 @@ body {
 
     text-align: center;
 
-    box-shadow:
-        0 3px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
 
     transition: 0.3s;
 }
@@ -274,92 +231,79 @@ body {
 
 .pizza-card img {
     width: 100%;
-
     height: 180px;
 
     object-fit: cover;
 
     border-radius: 10px;
-
-    display: block;
 }
 
 .pizza-card h3 {
     margin: 12px 0 8px;
-
-    font-size: 18px;
 }
 
 .pizza-card p {
     font-size: 20px;
-
     font-weight: bold;
-
     color: orange;
-
-    margin-bottom: 8px;
 }
 
 
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTONS */
+
+.pizza-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 10px;
+}
 
 .add-cart-btn,
 .buy-now-btn {
     border: none;
 
-    padding: 9px 12px;
-
-    margin: 5px 2px;
+    padding: 9px 13px;
 
     border-radius: 20px;
 
     cursor: pointer;
 
     font-weight: bold;
-
-    font-size: 12px;
 }
 
 .add-cart-btn {
-    background-color: orange;
-
+    background: orange;
     color: white;
 }
 
 .buy-now-btn {
-    background-color: #111;
-
+    background: #111;
     color: white;
 }
 
 .add-cart-btn:hover {
-    background-color: #e67e00;
+    background: #e67e00;
 }
 
 .buy-now-btn:hover {
-    background-color: #333;
+    background: #333;
 }
 
 
-/* =========================
-   CART SUMMARY
-========================= */
+/* CART */
 
 #cartSummary {
     display: none;
 
     margin: 40px 7%;
-
     padding: 25px;
 
-    background-color: white;
+    background: white;
 
     border-radius: 12px;
 
-    box-shadow:
-        0 3px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
 }
 
 #cartSummary h2 {
@@ -368,7 +312,6 @@ body {
 
 #cartItems {
     margin: 15px 0;
-
     padding-left: 20px;
 }
 
@@ -381,147 +324,59 @@ body {
 }
 
 
-/* =========================
-   LOGIN MODAL
-========================= */
-
-.modal {
-    display: none;
-
-    position: fixed;
-
-    z-index: 1000;
-
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background-color: rgba(0,0,0,0.7);
-}
-
-.modal-content {
-    background-color: white;
-
-    width: 350px;
-
-    padding: 30px;
-
-    border-radius: 12px;
-
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-
-    text-align: center;
-}
-
-.modal-content h2 {
-    margin-bottom: 20px;
-}
-
-.modal-content input {
-    width: 100%;
-
-    padding: 12px;
-
-    margin: 8px 0;
-
-    border: 1px solid #ccc;
-
-    border-radius: 6px;
-}
-
-.modal-content button {
-    width: 100%;
-
-    padding: 12px;
-
-    margin-top: 10px;
-
-    background-color: orange;
-
-    color: white;
-
-    border: none;
-
-    border-radius: 6px;
-
-    cursor: pointer;
-
-    font-weight: bold;
-}
-
-.close {
-    position: absolute;
-
-    right: 15px;
-    top: 8px;
-
-    font-size: 28px;
-
-    cursor: pointer;
-}
-
-
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE */
 
 @media (max-width: 1100px) {
 
     .pizza-grid {
-        grid-template-columns:
-            repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
-
 }
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
+
+    .pizza-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero-image {
+        width: 320px;
+        height: 320px;
+    }
+}
+
+@media (max-width: 768px) {
 
     .nav-links {
-        gap: 15px;
+        display: none;
     }
 
     .hero {
         flex-direction: column;
-
         text-align: center;
-    }
-
-    .hero-image {
-        width: 300px;
-        height: 300px;
-    }
-
-    .hero-image img {
-        width: 280px;
-        height: 280px;
-    }
-
-    .pizza-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-}
-
-@media (max-width: 600px) {
-
-    .nav-links {
-        display: none;
     }
 
     .hero-content h1 {
         font-size: 45px;
     }
 
+    .hero-image {
+        width: 280px;
+        height: 280px;
+    }
+
+    .pizza-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+
     .pizza-grid {
         grid-template-columns: 1fr;
     }
 
+    .pizza-buttons {
+        flex-direction: column;
+    }
 }
