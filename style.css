@@ -15,23 +15,34 @@ body {
 }
 
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar {
     height: 70px;
     padding: 0 7%;
-    background: #111;
+    background: #111827;
     color: white;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo {
-    color: orange;
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 800;
+    color: orange;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: white;
 }
 
 .nav-links {
@@ -44,6 +55,7 @@ body {
     color: white;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .nav-links li:hover {
@@ -58,6 +70,7 @@ body {
 
 .icons i {
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .icons i:hover {
@@ -65,19 +78,27 @@ body {
 }
 
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero {
-    min-height: 450px;
+    min-height: 480px;
     padding: 50px 8%;
 
-    background: linear-gradient(120deg, #111, #3d2100);
+    background:
+        linear-gradient(
+            120deg,
+            #111827,
+            #4a2508
+        );
 
     color: white;
 
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+
     gap: 50px;
 }
 
@@ -93,140 +114,182 @@ body {
 
 .hero-content h1 {
     font-size: 65px;
-    margin-bottom: 10px;
+    line-height: 1;
+    margin-bottom: 15px;
 }
 
 .hero-content p {
     color: orange;
     font-size: 22px;
+    font-weight: bold;
     margin-bottom: 25px;
 }
 
 .menu-button {
+    border: none;
     background: orange;
     color: white;
-    border: none;
 
     padding: 13px 25px;
+
     border-radius: 25px;
 
     font-weight: bold;
     cursor: pointer;
+
+    transition: 0.3s;
 }
 
 .menu-button:hover {
     background: #e67e00;
+    transform: scale(1.05);
 }
 
 
-/* HERO IMAGE */
+/* =========================
+   HERO PIZZA
+========================= */
 
 .hero-image {
-    width: 400px;
-    height: 400px;
+    width: 390px;
+    height: 390px;
+
+    border-radius: 50%;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    overflow: hidden;
+
+    border: 5px solid white;
+
+    background: rgba(255,255,255,0.05);
 }
 
 .hero-image img {
     width: 100%;
     height: 100%;
 
-    object-fit: contain;
+    object-fit: cover;
 
     border-radius: 50%;
-    border: 5px solid white;
 }
 
 
-/* FOOD SELECTOR */
+/* =========================
+   FOOD SELECTOR
+========================= */
 
 .items {
+    min-height: 100px;
+
     display: flex;
     justify-content: center;
-    gap: 20px;
+    align-items: center;
 
-    padding: 25px;
+    gap: 22px;
 
-    background: #111;
+    padding: 20px;
+
+    background: #111827;
 }
 
-.items div {
+.food-option {
     width: 65px;
     height: 65px;
 
     border-radius: 50%;
 
-    cursor: pointer;
+    border: 3px solid white;
 
     background-size: cover;
     background-position: center;
 
-    border: 3px solid white;
+    cursor: pointer;
+
+    transition: 0.3s;
 }
 
-#food1 {
+.food-option:hover,
+.food-option.active {
+    transform: scale(1.12);
+    border-color: orange;
+}
+
+.food-option:nth-child(1) {
     background-image: url("food1.png");
 }
 
-#food2 {
+.food-option:nth-child(2) {
     background-image: url("food2.png");
 }
 
-#food3 {
+.food-option:nth-child(3) {
     background-image: url("food3.png");
 }
 
-#food4 {
+.food-option:nth-child(4) {
     background-image: url("food4.png");
 }
 
 
-/* PIZZA SECTION */
+/* =========================
+   PIZZA SECTION
+========================= */
 
-#pizzaSection {
+.pizza-section {
     padding: 45px 7%;
     background: #f5f5f5;
 }
 
-#pizzaSection h2 {
+.pizza-section h2 {
     text-align: center;
     font-size: 32px;
     margin-bottom: 35px;
 }
 
 
-/* GRID */
+/* =========================
+   PIZZA GRID
+========================= */
 
 .pizza-grid {
     display: grid;
 
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns:
+        repeat(auto-fit, minmax(210px, 1fr));
 
     gap: 25px;
 }
 
 
-/* CARD */
+/* =========================
+   PIZZA CARD
+========================= */
 
 .pizza-card {
     background: white;
 
     padding: 15px;
 
-    border-radius: 12px;
+    border-radius: 14px;
 
     text-align: center;
 
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.12);
 
     transition: 0.3s;
+
+    overflow: hidden;
 }
 
 .pizza-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.18);
 }
 
 .pizza-card img {
@@ -239,59 +302,68 @@ body {
 }
 
 .pizza-card h3 {
-    margin: 12px 0 8px;
+    margin-top: 13px;
+    margin-bottom: 7px;
+    font-size: 18px;
 }
 
 .pizza-card p {
+    color: orange;
     font-size: 20px;
     font-weight: bold;
-    color: orange;
+    margin-bottom: 8px;
 }
 
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+========================= */
 
-.pizza-buttons {
+.card-buttons {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    align-items: center;
 
-    margin-top: 10px;
+    gap: 7px;
+
+    margin-top: 8px;
 }
 
-.add-cart-btn,
-.buy-now-btn {
+.card-buttons button {
     border: none;
 
-    padding: 9px 13px;
+    padding: 9px 12px;
 
     border-radius: 20px;
 
-    cursor: pointer;
-
-    font-weight: bold;
-}
-
-.add-cart-btn {
     background: orange;
     color: white;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
 }
 
-.buy-now-btn {
-    background: #111;
-    color: white;
-}
-
-.add-cart-btn:hover {
+.card-buttons button:hover {
     background: #e67e00;
+    transform: scale(1.05);
 }
 
-.buy-now-btn:hover {
+.card-buttons .buy {
+    background: #111827;
+}
+
+.card-buttons .buy:hover {
     background: #333;
 }
 
 
-/* CART */
+/* =========================
+   CART
+========================= */
 
 #cartSummary {
     display: none;
@@ -301,9 +373,10 @@ body {
 
     background: white;
 
-    border-radius: 12px;
+    border-radius: 14px;
 
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.12);
 }
 
 #cartSummary h2 {
@@ -311,8 +384,8 @@ body {
 }
 
 #cartItems {
-    margin: 15px 0;
     padding-left: 20px;
+    margin-bottom: 15px;
 }
 
 #cartItems li {
@@ -324,28 +397,15 @@ body {
 }
 
 
-/* RESPONSIVE */
-
-@media (max-width: 1100px) {
-
-    .pizza-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media (max-width: 900px) {
-
-    .pizza-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .hero-image {
-        width: 320px;
-        height: 320px;
-    }
-}
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (max-width: 768px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
 
     .nav-links {
         display: none;
@@ -354,10 +414,11 @@ body {
     .hero {
         flex-direction: column;
         text-align: center;
+        padding: 50px 5%;
     }
 
     .hero-content h1 {
-        font-size: 45px;
+        font-size: 48px;
     }
 
     .hero-image {
@@ -366,17 +427,34 @@ body {
     }
 
     .pizza-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 15px;
+    }
+
+    .pizza-card img {
+        height: 150px;
     }
 }
 
-@media (max-width: 500px) {
+
+@media (max-width: 480px) {
 
     .pizza-grid {
         grid-template-columns: 1fr;
     }
 
-    .pizza-buttons {
-        flex-direction: column;
+    .hero-content h1 {
+        font-size: 42px;
+    }
+
+    .hero-content h3 {
+        font-size: 23px;
+    }
+
+    .hero-image {
+        width: 240px;
+        height: 240px;
     }
 }
