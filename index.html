@@ -18,7 +18,9 @@
     <!-- NAVBAR -->
     <header class="navbar">
 
-        <div class="logo">pizz0</div>
+        <div class="logo">
+            pizz<span>0</span>
+        </div>
 
         <ul class="nav-links">
             <li>Tasty</li>
@@ -46,14 +48,16 @@
 
             <p>Let's start to order food now</p>
 
-            <button class="menu-button" onclick="scrollToMenu()">
+            <button class="menu-button" onclick="scrollToPizza()">
                 Check Out Menu
             </button>
 
         </div>
 
         <div class="hero-image">
-            <img src="food1.png" alt="Delicious Pizza">
+            <img id="heroPizza"
+                 src="food1.png"
+                 alt="Delicious Pizza">
         </div>
 
     </section>
@@ -62,10 +66,21 @@
     <!-- FOOD SELECTOR -->
     <section class="items">
 
-        <div id="food1"></div>
-        <div id="food2"></div>
-        <div id="food3"></div>
-        <div id="food4"></div>
+        <div class="food-option active"
+             onclick="changePizza('food1.png')">
+        </div>
+
+        <div class="food-option"
+             onclick="changePizza('food2.png')">
+        </div>
+
+        <div class="food-option"
+             onclick="changePizza('food3.png')">
+        </div>
+
+        <div class="food-option"
+             onclick="changePizza('food4.png')">
+        </div>
 
     </section>
 
@@ -78,139 +93,328 @@
         <div class="pizza-grid">
 
             <div class="pizza-card">
-                <img src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868918.jpg">
+                <img src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868918.jpg"
+                     alt="Margherita">
                 <h3>Margherita</h3>
                 <p>₹199</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Margherita',199)">
+                <div class="card-buttons">
+                    <button onclick="addToCart('Margherita',199)">
                         Add to Cart
                     </button>
-                    <button class="buy-now-btn" onclick="buyNow('Margherita',199)">
+                    <button class="buy"
+                            onclick="buyNow('Margherita',199)">
                         Buy Now
                     </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/free-photo/thinly-sliced-pepperoni-is-popular-pizza-topping-american-style-pizzerias-isolated-white-background-still-life_639032-229.jpg">
+                <img src="https://img.freepik.com/free-photo/thinly-sliced-pepperoni-is-popular-pizza-topping-american-style-pizzerias-isolated-white-background-still-life_639032-229.jpg"
+                     alt="Farmhouse">
                 <h3>Farmhouse</h3>
                 <p>₹249</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Farmhouse',249)">Add to Cart</button>
-                    <button class="buy-now-btn" onclick="buyNow('Farmhouse',249)">Buy Now</button>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Farmhouse',249)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Farmhouse',249)">
+                        Buy Now
+                    </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/free-photo/delicious-italian-pizza-with-tomato-olives-pepperoni-mushrooms-top-view-isolated-white-background-still-life-copy-space_639032-299.jpg">
+                <img src="https://img.freepik.com/free-photo/delicious-italian-pizza-with-tomato-olives-pepperoni-mushrooms-top-view-isolated-white-background-still-life-copy-space_639032-299.jpg"
+                     alt="Peppy Paneer">
                 <h3>Peppy Paneer</h3>
                 <p>₹299</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Peppy Paneer',299)">Add to Cart</button>
-                    <button class="buy-now-btn" onclick="buyNow('Peppy Paneer',299)">Buy Now</button>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Peppy Paneer',299)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Peppy Paneer',299)">
+                        Buy Now
+                    </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868964.jpg">
+                <img src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868964.jpg"
+                     alt="Veggie Delight">
                 <h3>Veggie Delight</h3>
                 <p>₹269</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Veggie Delight',269)">Add to Cart</button>
-                    <button class="buy-now-btn" onclick="buyNow('Veggie Delight',269)">Buy Now</button>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Veggie Delight',269)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Veggie Delight',269)">
+                        Buy Now
+                    </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/premium-photo/isolated-pizza-with-mushrooms-tomatoes_219193-8122.jpg">
+                <img src="https://img.freepik.com/premium-photo/isolated-pizza-with-mushrooms-tomatoes_219193-8122.jpg"
+                     alt="Spicy Chicken">
                 <h3>Spicy Chicken</h3>
                 <p>₹329</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Spicy Chicken',329)">Add to Cart</button>
-                    <button class="buy-now-btn" onclick="buyNow('Spicy Chicken',329)">Buy Now</button>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Spicy Chicken',329)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Spicy Chicken',329)">
+                        Buy Now
+                    </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/premium-photo/pepperoni-pizza-cheese-pizza-food-pizza-pizza-pepperoni-mozzarella-mozzarella-cheese-cheese_812450-2.jpg">
+                <img src="https://img.freepik.com/premium-photo/pepperoni-pizza-cheese-pizza-food-pizza-pizza-pepperoni-mozzarella-mozzarella-cheese-cheese_812450-2.jpg"
+                     alt="Pepperoni">
                 <h3>Pepperoni</h3>
                 <p>₹620</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Pepperoni',620)">Add to Cart</button>
-                    <button class="buy-now-btn" onclick="buyNow('Pepperoni',620)">Buy Now</button>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Pepperoni',620)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Pepperoni',620)">
+                        Buy Now
+                    </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/premium-psd/delicious-fast-food-burger-pizza-png-highquality-transparent-image-stock-commercial-use_1093584-252.jpg">
+                <img src="https://img.freepik.com/premium-psd/delicious-fast-food-burger-pizza-png-highquality-transparent-image-stock-commercial-use_1093584-252.jpg"
+                     alt="Cheese Burst">
                 <h3>Cheese Burst</h3>
                 <p>₹589</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Cheese Burst',589)">Add to Cart</button>
-                    <button class="buy-now-btn" onclick="buyNow('Cheese Burst',589)">Buy Now</button>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Cheese Burst',589)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Cheese Burst',589)">
+                        Buy Now
+                    </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/premium-photo/fresh-pizza-wooden-board-isolated-white_93675-109645.jpg">
+                <img src="https://img.freepik.com/premium-photo/fresh-pizza-wooden-board-isolated-white_93675-109645.jpg"
+                     alt="Kudaval">
                 <h3>Kudaval</h3>
                 <p>₹450</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Kudaval',450)">Add to Cart</button>
-                    <button class="buy-now-btn" onclick="buyNow('Kudaval',450)">Buy Now</button>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Kudaval',450)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Kudaval',450)">
+                        Buy Now
+                    </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/premium-photo/isolated-pizza-with-meat-vegetables-white_219193-5970.jpg">
+                <img src="https://img.freepik.com/premium-photo/isolated-pizza-with-meat-vegetables-white_219193-5970.jpg"
+                     alt="Ketharin">
                 <h3>Ketharin</h3>
                 <p>₹600</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Ketharin',600)">Add to Cart</button>
-                    <button class="buy-now-btn" onclick="buyNow('Ketharin',600)">Buy Now</button>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Ketharin',600)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Ketharin',600)">
+                        Buy Now
+                    </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/premium-psd/delicious-fast-food-burger-pizza-png-highquality-transparent-image-stock-commercial-use_1093584-233.jpg">
+                <img src="https://img.freepik.com/premium-psd/delicious-fast-food-burger-pizza-png-highquality-transparent-image-stock-commercial-use_1093584-233.jpg"
+                     alt="Belgium Choco">
                 <h3>Belgium Choco</h3>
                 <p>₹567</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Belgium Choco',567)">Add to Cart</button>
-                    <button class="buy-now-btn" onclick="buyNow('Belgium Choco',567)">Buy Now</button>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Belgium Choco',567)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Belgium Choco',567)">
+                        Buy Now
+                    </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/premium-photo/fresh-pizza-wooden-board-isolated-white_93675-111113.jpg">
+                <img src="https://img.freepik.com/premium-photo/fresh-pizza-wooden-board-isolated-white_93675-111113.jpg"
+                     alt="Kunafa">
                 <h3>Kunafa</h3>
                 <p>₹500</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Kunafa',500)">Add to Cart</button>
-                    <button class="buy-now-btn" onclick="buyNow('Kunafa',500)">Buy Now</button>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Kunafa',500)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Kunafa',500)">
+                        Buy Now
+                    </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/premium-photo/ham-pizza_163782-2493.jpg">
+                <img src="https://img.freepik.com/premium-photo/ham-pizza_163782-2493.jpg"
+                     alt="Japanese">
                 <h3>Japanese</h3>
                 <p>₹350</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Japanese',350)">Add to Cart</button>
-                    <button class="buy-now-btn" onclick="buyNow('Japanese',350)">Buy Now</button>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Japanese',350)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Japanese',350)">
+                        Buy Now
+                    </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/free-photo/pizza-with-cheese-tomato-isolated-white-background-pizza-margarita-top-view-photo-menu_639032-301.jpg">
+                <img src="https://img.freepik.com/free-photo/pizza-with-cheese-tomato-isolated-white-background-pizza-margarita-top-view-photo-menu_639032-301.jpg"
+                     alt="Chenidu">
                 <h3>Chenidu</h3>
                 <p>₹432</p>
-                <div class="pizza-buttons">
-                    <button class="add-cart-btn" onclick="addToCart('Chenidu',432)">Add to Cart</button>
-                    <button class="buy-now-btn" onclick="buyNow('Chenidu',432)">Buy Now</button>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Chenidu',432)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Chenidu',432)">
+                        Buy Now
+                    </button>
                 </div>
             </div>
 
+
             <div class="pizza-card">
-                <img src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868918.jpg">
-                <
+                <img src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868918.jpg"
+                     alt="Premium Pulp">
+                <h3>Premium Pulp</h3>
+                <p>₹680</p>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Premium Pulp',680)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Premium Pulp',680)">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="pizza-card">
+                <img src="https://img.freepik.com/premium-photo/isolated-pizza-with-minced-meat-tomatoes_219193-8131.jpg"
+                     alt="Neapolitan">
+                <h3>Neapolitan</h3>
+                <p>₹800</p>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Neapolitan',800)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Neapolitan',800)">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="pizza-card">
+                <img src="https://img.freepik.com/free-photo/chicken-pizza-with-bell-pepper-olives_140725-7233.jpg"
+                     alt="New York Pizza">
+                <h3>New York Pizza</h3>
+                <p>₹678</p>
+                <div class="card-buttons">
+                    <button onclick="addToCart('New York Pizza',678)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('New York Pizza',678)">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="pizza-card">
+                <img src="https://img.freepik.com/premium-photo/popular-pizza-topping-american-style-pizzerias-white_135427-4403.jpg"
+                     alt="Bagel Pizza">
+                <h3>Bagel Pizza</h3>
+                <p>₹390</p>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Bagel Pizza',390)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Bagel Pizza',390)">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="pizza-card">
+                <img src="https://img.freepik.com/free-psd/delicious-mushroom-tomato-pizza-slices_191095-84144.jpg"
+                     alt="Baked Ziti">
+                <h3>Baked Ziti</h3>
+                <p>₹321</p>
+                <div class="card-buttons">
+                    <button onclick="addToCart('Baked Ziti',321)">
+                        Add to Cart
+                    </button>
+                    <button class="buy"
+                            onclick="buyNow('Baked Ziti',321)">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CART -->
+    <section id="cartSummary">
+
+        <h2>🛒 Cart Summary</h2>
+
+        <ul id="cartItems"></ul>
+
+        <h3>
+            Total: ₹<span id="cartTotal">0</span>
+        </h3>
+
+    </section>
+
+
+</body>
+</html>
