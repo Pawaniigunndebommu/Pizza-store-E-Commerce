@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>pizz0 - Pizza Store</title>
 
     <link rel="stylesheet" href="style.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
+<!-- ================= NAVBAR ================= -->
+
 <header class="navbar">
-    <div class="logo">pizz<span>0</span></div>
+
+    <div class="logo">
+        pizz<span>0</span>
+    </div>
 
     <nav>
         <a href="#home">Tasty</a>
@@ -25,267 +32,739 @@
     </nav>
 
     <div class="nav-icons">
-        <button id="searchBtn" title="Search">⌕</button>
-        <button id="cartBtn" title="Cart">
+
+        <button id="searchBtn">⌕</button>
+
+        <button id="cartBtn">
             🛒
             <span id="cartCount">0</span>
         </button>
+
     </div>
+
 </header>
 
 
-<!-- SEARCH BOX -->
+<!-- ================= SEARCH ================= -->
+
 <div class="search-box" id="searchBox">
-    <input type="text" id="searchInput" placeholder="Search pizza...">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search pizza..."
+    >
+
 </div>
 
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
+
 <section class="hero" id="home">
 
     <div class="hero-content">
-        <p class="small-title">Are You Hungry?</p>
-        <h1>Don't Wait.</h1>
-        <p class="hero-text">Let's start to order food now</p>
 
-        <button class="menu-btn" onclick="document.getElementById('pizzas').scrollIntoView({behavior:'smooth'})">
+        <p class="small-title">
+            Are You Hungry?
+        </p>
+
+        <h1>
+            Don't Wait.
+        </h1>
+
+        <p class="hero-text">
+            Let's start to order food now
+        </p>
+
+        <button
+            class="menu-btn"
+            onclick="document.getElementById('pizzas').scrollIntoView({behavior:'smooth'})">
+
             Check Out Menu
+
         </button>
+
     </div>
 
+
     <div class="hero-image">
-        <img id="heroImg"
-        src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80"
-        alt="Pizza">
+
+        <img
+            id="heroImg"
+            src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80"
+            alt="Delicious Pizza"
+            onerror="this.src='https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80'"
+        >
+
     </div>
 
 </section>
 
 
-<!-- 4 ROUND SLIDER BUTTONS -->
+<!-- ================= 4 PHOTO ROUNDS ================= -->
+
 <div class="slider-dots">
 
-    <button class="dot active"
+    <button
+        class="dot active"
         data-image="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80">
     </button>
 
-    <button class="dot"
+    <button
+        class="dot"
         data-image="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80">
     </button>
 
-    <button class="dot"
+    <button
+        class="dot"
         data-image="https://images.unsplash.com/photo-1593560708920-61dd98c8a48b?auto=format&fit=crop&w=700&q=80">
     </button>
 
-    <button class="dot"
+    <button
+        class="dot"
         data-image="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=700&q=80">
     </button>
 
 </div>
 
 
-<!-- PIZZAS -->
-<section class="pizza-section" id="pizzas">
+<!-- ================= PIZZA SECTION ================= -->
+
+<section
+    class="pizza-section"
+    id="pizzas">
 
     <div class="section-title">
-        <h2>🍕 Our Pizzas</h2>
-        <p>Choose your favourite pizza</p>
+
+        <h2>
+            🍕 Our Pizzas
+        </h2>
+
+        <p>
+            Choose your favourite pizza
+        </p>
+
     </div>
 
-    <div class="pizza-grid" id="pizzaGrid">
+
+    <div
+        class="pizza-grid"
+        id="pizzaGrid">
+
 
         <!-- 1 -->
-        <div class="pizza-card" data-name="Margherita">
-            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80">
-            <h3>Margherita</h3>
-            <p class="price">₹199</p>
+
+        <div
+            class="pizza-card"
+            data-name="Margherita">
+
+            <img
+                src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80"
+                alt="Margherita">
+
+            <h3>
+                Margherita
+            </h3>
+
+            <p class="price">
+                ₹199
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Margherita',199)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Margherita',199)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Margherita',199)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Margherita',199)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 2 -->
-        <div class="pizza-card" data-name="Farmhouse">
-            <img src="https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?auto=format&fit=crop&w=500&q=80">
-            <h3>Farmhouse</h3>
-            <p class="price">₹249</p>
+
+        <div
+            class="pizza-card"
+            data-name="Farmhouse">
+
+            <img
+                src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=80"
+                alt="Farmhouse">
+
+            <h3>
+                Farmhouse
+            </h3>
+
+            <p class="price">
+                ₹249
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Farmhouse',249)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Farmhouse',249)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Farmhouse',249)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Farmhouse',249)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 3 -->
-        <div class="pizza-card" data-name="Peppy Paneer">
-            <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80">
-            <h3>Peppy Paneer</h3>
-            <p class="price">₹299</p>
+
+        <div
+            class="pizza-card"
+            data-name="Peppy Paneer">
+
+            <img
+                src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80"
+                alt="Peppy Paneer">
+
+            <h3>
+                Peppy Paneer
+            </h3>
+
+            <p class="price">
+                ₹299
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Peppy Paneer',299)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Peppy Paneer',299)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Peppy Paneer',299)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Peppy Paneer',299)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 4 -->
-        <div class="pizza-card" data-name="Veggie Delight">
-            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80">
-            <h3>Veggie Delight</h3>
-            <p class="price">₹269</p>
+
+        <div
+            class="pizza-card"
+            data-name="Veggie Delight">
+
+            <img
+                src="https://images.unsplash.com/photo-1593560708920-61dd98c8a48b?auto=format&fit=crop&w=500&q=80"
+                alt="Veggie Delight">
+
+            <h3>
+                Veggie Delight
+            </h3>
+
+            <p class="price">
+                ₹269
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Veggie Delight',269)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Veggie Delight',269)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Veggie Delight',269)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Veggie Delight',269)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 5 -->
-        <div class="pizza-card" data-name="Spicy Chicken">
-            <img src="https://images.unsplash.com/photo-1593560708920-61dd98c8a48b?auto=format&fit=crop&w=500&q=80">
-            <h3>Spicy Chicken</h3>
-            <p class="price">₹329</p>
+
+        <div
+            class="pizza-card"
+            data-name="Spicy Chicken">
+
+            <img
+                src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80"
+                alt="Spicy Chicken">
+
+            <h3>
+                Spicy Chicken
+            </h3>
+
+            <p class="price">
+                ₹329
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Spicy Chicken',329)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Spicy Chicken',329)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Spicy Chicken',329)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Spicy Chicken',329)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 6 -->
-        <div class="pizza-card" data-name="Pepperoni">
-            <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=500&q=80">
-            <h3>Pepperoni</h3>
-            <p class="price">₹620</p>
+
+        <div
+            class="pizza-card"
+            data-name="Pepperoni">
+
+            <img
+                src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=500&q=80"
+                alt="Pepperoni">
+
+            <h3>
+                Pepperoni
+            </h3>
+
+            <p class="price">
+                ₹620
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Pepperoni',620)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Pepperoni',620)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Pepperoni',620)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Pepperoni',620)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 7 -->
-        <div class="pizza-card" data-name="Cheese Burst">
-            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80">
-            <h3>Cheese Burst</h3>
-            <p class="price">₹389</p>
+
+        <div
+            class="pizza-card"
+            data-name="Cheese Burst">
+
+            <img
+                src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=80"
+                alt="Cheese Burst">
+
+            <h3>
+                Cheese Burst
+            </h3>
+
+            <p class="price">
+                ₹389
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Cheese Burst',389)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Cheese Burst',389)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Cheese Burst',389)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Cheese Burst',389)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 8 -->
-        <div class="pizza-card" data-name="Kudaval">
-            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=80">
-            <h3>Kudaval</h3>
-            <p class="price">₹450</p>
+
+        <div
+            class="pizza-card"
+            data-name="Kudaval">
+
+            <img
+                src="https://images.unsplash.com/photo-1593560708920-61dd98c8a48b?auto=format&fit=crop&w=500&q=80"
+                alt="Kudaval">
+
+            <h3>
+                Kudaval
+            </h3>
+
+            <p class="price">
+                ₹450
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Kudaval',450)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Kudaval',450)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Kudaval',450)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Kudaval',450)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 9 -->
-        <div class="pizza-card" data-name="Ketharin">
-            <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80">
-            <h3>Ketharin</h3>
-            <p class="price">₹600</p>
+
+        <div
+            class="pizza-card"
+            data-name="Ketharin">
+
+            <img
+                src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80"
+                alt="Ketharin">
+
+            <h3>
+                Ketharin
+            </h3>
+
+            <p class="price">
+                ₹600
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Ketharin',600)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Ketharin',600)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Ketharin',600)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Ketharin',600)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 10 -->
-        <div class="pizza-card" data-name="Belgium Choco">
-            <img src="https://images.unsplash.com/photo-1593560708920-61dd98c8a48b?auto=format&fit=crop&w=500&q=80">
-            <h3>Belgium Choco</h3>
-            <p class="price">₹567</p>
+
+        <div
+            class="pizza-card"
+            data-name="Belgium Choco">
+
+            <img
+                src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=80"
+                alt="Belgium Choco">
+
+            <h3>
+                Belgium Choco
+            </h3>
+
+            <p class="price">
+                ₹567
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Belgium Choco',567)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Belgium Choco',567)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Belgium Choco',567)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Belgium Choco',567)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 11 -->
-        <div class="pizza-card" data-name="Kunafa">
-            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80">
-            <h3>Kunafa</h3>
-            <p class="price">₹500</p>
+
+        <div
+            class="pizza-card"
+            data-name="Kunafa">
+
+            <img
+                src="https://images.unsplash.com/photo-1593560708920-61dd98c8a48b?auto=format&fit=crop&w=500&q=80"
+                alt="Kunafa">
+
+            <h3>
+                Kunafa
+            </h3>
+
+            <p class="price">
+                ₹500
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Kunafa',500)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Kunafa',500)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Kunafa',500)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Kunafa',500)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 12 -->
-        <div class="pizza-card" data-name="Japanese">
-            <img src="https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?auto=format&fit=crop&w=500&q=80">
-            <h3>Japanese</h3>
-            <p class="price">₹350</p>
+
+        <div
+            class="pizza-card"
+            data-name="Japanese">
+
+            <img
+                src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80"
+                alt="Japanese">
+
+            <h3>
+                Japanese
+            </h3>
+
+            <p class="price">
+                ₹350
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Japanese',350)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Japanese',350)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Japanese',350)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Japanese',350)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 13 -->
-        <div class="pizza-card" data-name="Chenidu">
-            <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80">
-            <h3>Chenidu</h3>
-            <p class="price">₹432</p>
+
+        <div
+            class="pizza-card"
+            data-name="Chenidu">
+
+            <img
+                src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80"
+                alt="Chenidu">
+
+            <h3>
+                Chenidu
+            </h3>
+
+            <p class="price">
+                ₹432
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Chenidu',432)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Chenidu',432)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Chenidu',432)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Chenidu',432)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
+
 
         <!-- 14 -->
-        <div class="pizza-card" data-name="Premium Pulp">
-            <img src="https://images.unsplash.com/photo-1593560708920-61dd98c8a48b?auto=format&fit=crop&w=500&q=80">
-            <h3>Premium Pulp</h3>
-            <p class="price">₹680</p>
+
+        <div
+            class="pizza-card"
+            data-name="Premium Pulp">
+
+            <img
+                src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=80"
+                alt="Premium Pulp">
+
+            <h3>
+                Premium Pulp
+            </h3>
+
+            <p class="price">
+                ₹680
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Premium Pulp',680)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Premium Pulp',680)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Premium Pulp',680)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Premium Pulp',680)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
 
+
         <!-- 15 -->
-        <div class="pizza-card" data-name="Neapolitan">
-            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=80">
-            <h3>Neapolitan</h3>
-            <p class="price">₹800</p>
+
+        <div
+            class="pizza-card"
+            data-name="Neapolitan">
+
+            <img
+                src="https://images.unsplash.com/photo-1593560708920-61dd98c8a48b?auto=format&fit=crop&w=500&q=80"
+                alt="Neapolitan">
+
+            <h3>
+                Neapolitan
+            </h3>
+
+            <p class="price">
+                ₹800
+            </p>
+
             <div class="buttons">
-                <button class="cart-btn" onclick="addToCart('Neapolitan',800)">Add to Cart</button>
-                <button class="buy-btn" onclick="buyNow('Neapolitan',800)">Buy Now</button>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Neapolitan',800)">
+                    Add to Cart
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('Neapolitan',800)">
+                    Buy Now
+                </button>
+
             </div>
+
         </div>
 
     </div>
+
 </section>
 
 
-<!-- CART POPUP -->
-<div class="cart-panel" id="cartPanel">
+<!-- ================= CART ================= -->
+
+<div
+    class="cart-panel"
+    id="cartPanel">
 
     <div class="cart-header">
-        <h2>Your Cart</h2>
-        <button id="closeCart">✕</button>
+
+        <h2>
+            Your Cart
+        </h2>
+
+        <button id="closeCart">
+            ✕
+        </button>
+
     </div>
+
 
     <div id="cartItems">
-        <p class="empty-cart">Your cart is empty.</p>
+
+        <p class="empty-cart">
+            Your cart is empty.
+        </p>
+
     </div>
 
+
     <div class="cart-footer">
-        <h3>Total: ₹<span id="cartTotal">0</span></h3>
-        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+
+        <h3>
+            Total: ₹
+            <span id="cartTotal">0</span>
+        </h3>
+
+        <button
+            class="checkout-btn"
+            onclick="checkout()">
+
+            Checkout
+
+        </button>
+
     </div>
 
 </div>
 
 
 <!-- MESSAGE -->
+
 <div id="message"></div>
 
+
+<!-- SCRIPT -->
 
 <script src="script.js"></script>
 
