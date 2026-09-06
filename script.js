@@ -1,261 +1,364 @@
-/* =====================================================
-   PIZZA STORE - COMPLETE SCRIPT.JS
-   Only fixes:
-   1. Cart functionality
-   2. Slider 3rd circle image
-   ===================================================== */
-
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* ================================
-       CART VARIABLES
-       ================================ */
+    /* ================= ELEMENTS ================= */
 
-    let cart = [];
+    const heroImg = document.getElementById("heroImg");
+
+    const dots = document.querySelectorAll(".dot");
+
+    const menuBtn = document.getElementById("menuBtn");
 
     const cartBtn = document.getElementById("cartBtn");
-    const cartPanel = document.getElementById("cartPanel");
+
     const closeCart = document.getElementById("closeCart");
+
+    const cartPanel = document.getElementById("cartPanel");
+
     const cartItems = document.getElementById("cartItems");
-    const cartTotal = document.getElementById("cartTotal");
+
     const cartCount = document.getElementById("cartCount");
+
+    const cartTotal = document.getElementById("cartTotal");
+
+    const checkoutBtn = document.getElementById("checkoutBtn");
+
+    const searchBtn = document.getElementById("searchBtn");
+
+    const searchBox = document.getElementById("searchBox");
+
+    const searchInput = document.getElementById("searchInput");
+
     const message = document.getElementById("message");
 
 
-    /* ================================
-       OPEN CART
-       ================================ */
+    /* ================= CART DATA ================= */
 
-    if (cartBtn) {
-        cartBtn.addEventListener("click", function () {
-            cartPanel.classList.add("active");
+    let cart = [];
+
+
+    /* ================= HERO SLIDER ================= */
+
+    dots.forEach(function (dot) {
+
+        dot.addEventListener("click", function () {
+
+            const image = this.getAttribute("data-image");
+
+            if (image) {
+                heroImg.src = image;
+            }
+
+            dots.forEach(function (item) {
+                item.classList.remove("active");
+            });
+
+            this.classList.add("active");
+
         });
-    }
+
+    });
 
 
-    /* ================================
-       CLOSE CART
-       ================================ */
+    /* ================= MENU BUTTON ================= */
 
-    if (closeCart) {
-        closeCart.addEventListener("click", function () {
-            cartPanel.classList.remove("active");
+    menuBtn.addEventListener("click", function () {
+
+        document.getElementById("pizzas").scrollIntoView({
+            behavior: "smooth"
         });
-    }
+
+    });
 
 
-    /* ================================
-       ADD TO CART
-       ================================ */
+    /* ================= OPEN CART ================= */
 
-    window.addToCart = function (name, price) {
+    cartBtn.addEventListener("click", function () {
 
-        const existingItem = cart.find(function (item) {
+        cartPanel.classList.add("active");
+
+    });
+
+
+    /* ================= CLOSE CART ================= */
+
+    closeCart.addEventListener("click", function () {
+
+        cartPanel.classList.remove("active");
+
+    });
+
+
+    /* ================= ADD TO CART ================= */
+
+    document.querySelectorAll(".cart-btn").forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const name = this.dataset.name;
+
+            const price = Number(this.dataset.price);
+
+            addToCart(name, price);
+
+        });
+
+    });
+
+
+    function addToCart(name, price) {
+
+        const existing = cart.find(function (item) {
+
             return item.name === name;
+
         });
 
-        if (existingItem) {
-            existingItem.quantity++;
+
+        if (existing) {
+
+            existing.quantity++;
+
         } else {
+
             cart.push({
                 name: name,
                 price: price,
                 quantity: 1
             });
+
         }
+
 
         updateCart();
 
         showMessage(name + " added to cart!");
 
-        cartPanel.classList.add("active");
-    };
+    }
 
 
-    /* ================================
-       UPDATE CART
-       ================================ */
+    /* ================= BUY NOW ================= */
+
+    document.querySelectorAll(".buy-btn").forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const name = this.dataset.name;
+
+            const price = Number(this.dataset.price);
+
+            cart = [{
+                name: name,
+                price: price,
+                quantity: 1
+            }];
+
+            updateCart();
+
+            cartPanel.classList.add("active");
+
+        });
+
+    });
+
+
+    /* ================= UPDATE CART ================= */
 
     function updateCart() {
 
-        if (!cartItems) return;
-
         cartItems.innerHTML = "";
+
+        let total = 0;
+
+        let count = 0;
+
 
         if (cart.length === 0) {
 
             cartItems.innerHTML =
                 '<p class="empty-cart">Your cart is empty.</p>';
 
-            cartTotal.textContent = "0";
-            cartCount.textContent = "0";
-
-            return;
         }
-
-
-        let total = 0;
-        let count = 0;
 
 
         cart.forEach(function (item, index) {
 
-            total += item.price * item.quantity;
+            const itemTotal =
+                item.price * item.quantity;
+
+            total += itemTotal;
+
             count += item.quantity;
 
 
-            const itemDiv = document.createElement("div");
+            const div = document.createElement("div");
 
-            itemDiv.className = "cart-item";
+            div.className = "cart-item";
 
 
-            itemDiv.innerHTML = `
+            div.innerHTML = `
+
                 <div>
                     <h4>${item.name}</h4>
                     <p>₹${item.price} × ${item.quantity}</p>
                 </div>
 
-                <div class="cart-controls">
+                <div class="cart-actions">
 
-                    <button onclick="decreaseItem(${index})">
+                    <button class="minus" data-index="${index}">
                         −
                     </button>
 
-                    <span>
-                        ${item.quantity}
-                    </span>
-
-                    <button onclick="increaseItem(${index})">
+                    <button class="plus" data-index="${index}">
                         +
                     </button>
 
-                    <button onclick="removeItem(${index})">
+                    <button class="remove" data-index="${index}">
                         ✕
                     </button>
 
                 </div>
+
             `;
 
 
-            cartItems.appendChild(itemDiv);
+            cartItems.appendChild(div);
 
         });
 
 
         cartTotal.textContent = total;
+
         cartCount.textContent = count;
+
+
+        /* MINUS */
+
+        document.querySelectorAll(".minus").forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const index = Number(this.dataset.index);
+
+                cart[index].quantity--;
+
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1);
+                }
+
+                updateCart();
+
+            });
+
+        });
+
+
+        /* PLUS */
+
+        document.querySelectorAll(".plus").forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const index = Number(this.dataset.index);
+
+                cart[index].quantity++;
+
+                updateCart();
+
+            });
+
+        });
+
+
+        /* REMOVE */
+
+        document.querySelectorAll(".remove").forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const index = Number(this.dataset.index);
+
+                cart.splice(index, 1);
+
+                updateCart();
+
+            });
+
+        });
+
     }
 
 
-    /* ================================
-       INCREASE ITEM
-       ================================ */
+    /* ================= CHECKOUT ================= */
 
-    window.increaseItem = function (index) {
-
-        if (cart[index]) {
-            cart[index].quantity++;
-        }
-
-        updateCart();
-    };
-
-
-    /* ================================
-       DECREASE ITEM
-       ================================ */
-
-    window.decreaseItem = function (index) {
-
-        if (!cart[index]) return;
-
-        cart[index].quantity--;
-
-        if (cart[index].quantity <= 0) {
-            cart.splice(index, 1);
-        }
-
-        updateCart();
-    };
-
-
-    /* ================================
-       REMOVE ITEM
-       ================================ */
-
-    window.removeItem = function (index) {
-
-        if (!cart[index]) return;
-
-        cart.splice(index, 1);
-
-        updateCart();
-
-        showMessage("Item removed from cart");
-    };
-
-
-    /* ================================
-       BUY NOW
-       ================================ */
-
-    window.buyNow = function (name, price) {
-
-        cart = [{
-            name: name,
-            price: price,
-            quantity: 1
-        }];
-
-        updateCart();
-
-        cartPanel.classList.add("active");
-
-        showMessage("Ready to checkout!");
-    };
-
-
-    /* ================================
-       CHECKOUT
-       ================================ */
-
-    window.checkout = function () {
+    checkoutBtn.addEventListener("click", function () {
 
         if (cart.length === 0) {
 
             showMessage("Your cart is empty!");
 
             return;
+
         }
 
-        let total = 0;
 
-        cart.forEach(function (item) {
-            total += item.price * item.quantity;
-        });
-
-
-        alert(
-            "Order placed successfully!\n\n" +
-            "Total Amount: ₹" + total
-        );
-
+        showMessage("Order placed successfully! 🍕");
 
         cart = [];
 
         updateCart();
 
-        cartPanel.classList.remove("active");
-    };
+        setTimeout(function () {
+
+            cartPanel.classList.remove("active");
+
+        }, 1000);
+
+    });
 
 
-    /* ================================
-       MESSAGE
-       ================================ */
+    /* ================= SEARCH ================= */
+
+    searchBtn.addEventListener("click", function () {
+
+        searchBox.classList.toggle("active");
+
+        if (searchBox.classList.contains("active")) {
+            searchInput.focus();
+        }
+
+    });
+
+
+    searchInput.addEventListener("input", function () {
+
+        const searchValue =
+            this.value.toLowerCase().trim();
+
+
+        document.querySelectorAll(".pizza-card").forEach(function (card) {
+
+            const name =
+                card.dataset.name.toLowerCase();
+
+
+            if (name.includes(searchValue)) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+
+    /* ================= MESSAGE ================= */
 
     function showMessage(text) {
-
-        if (!message) return;
 
         message.textContent = text;
 
@@ -263,106 +366,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         setTimeout(function () {
+
             message.classList.remove("show");
+
         }, 2000);
-    }
-
-
-    /* =================================================
-       SLIDER
-       3rd CIRCLE FIX
-       ================================================= */
-
-    const heroImg = document.getElementById("heroImg");
-
-    const dots = document.querySelectorAll(".dot");
-
-
-    /*
-       These are working pizza images.
-       IMPORTANT:
-       The 3rd image is replaced with a reliable
-       pizza image instead of the broken URL.
-    */
-
-    const sliderImages = [
-
-        "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80",
-
-        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80",
-
-        "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=80",
-
-        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=700&q=80"
-
-    ];
-
-
-    /* ================================
-       PUT IMAGES INSIDE CIRCLES
-       ================================ */
-
-    dots.forEach(function (dot, index) {
-
-        if (sliderImages[index]) {
-
-            dot.style.backgroundImage =
-                "url('" + sliderImages[index] + "')";
-
-            dot.style.backgroundSize = "cover";
-
-            dot.style.backgroundPosition = "center";
-
-            dot.style.backgroundRepeat = "no-repeat";
-
-        }
-
-
-        /* ================================
-           CIRCLE CLICK
-           ================================ */
-
-        dot.addEventListener("click", function () {
-
-            if (!heroImg) return;
-
-
-            heroImg.src = sliderImages[index];
-
-
-            dots.forEach(function (d) {
-                d.classList.remove("active");
-            });
-
-
-            dot.classList.add("active");
-
-        });
-
-    });
-
-
-    /* ================================
-       FORCE 3RD CIRCLE IMAGE
-       ================================ */
-
-    if (dots[2]) {
-
-        dots[2].style.backgroundImage =
-            "url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=80')";
-
-        dots[2].style.backgroundSize = "cover";
-
-        dots[2].style.backgroundPosition = "center";
-
-        dots[2].style.backgroundRepeat = "no-repeat";
 
     }
 
 
-    /* ================================
-       IMAGE ERROR PROTECTION
-       ================================ */
+    /* ================= IMAGE ERROR FALLBACK ================= */
+
+    const fallbackImage =
+        "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80";
+
 
     document.querySelectorAll("img").forEach(function (img) {
 
@@ -370,87 +386,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             this.onerror = null;
 
-            this.src =
-                "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80";
+            this.src = fallbackImage;
 
         });
 
     });
 
 
-    /* ================================
-       SEARCH
-       ================================ */
-
-    const searchBtn = document.getElementById("searchBtn");
-    const searchBox = document.getElementById("searchBox");
-    const searchInput = document.getElementById("searchInput");
-
-
-    if (searchBtn && searchBox) {
-
-        searchBtn.addEventListener("click", function () {
-
-            searchBox.classList.toggle("active");
-
-            if (searchBox.classList.contains("active")) {
-
-                searchInput.focus();
-
-            }
-
-        });
-
-    }
-
-
-    /* ================================
-       SEARCH PIZZAS
-       ================================ */
-
-    if (searchInput) {
-
-        searchInput.addEventListener("input", function () {
-
-            const searchValue =
-                searchInput.value.toLowerCase().trim();
-
-
-            const pizzaCards =
-                document.querySelectorAll(".pizza-card");
-
-
-            pizzaCards.forEach(function (card) {
-
-                const name =
-                    card.dataset.name.toLowerCase();
-
-
-                if (name.includes(searchValue)) {
-
-                    card.style.display = "";
-
-                } else {
-
-                    card.style.display = "none";
-
-                }
-
-            });
-
-        });
-
-    }
-
-
-    /* ================================
-       INITIAL CART
-       ================================ */
+    /* ================= INITIAL CART ================= */
 
     updateCart();
-
-});
-
-    }
 
 });
