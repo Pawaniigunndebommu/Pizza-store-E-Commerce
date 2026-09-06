@@ -4,420 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Pizz0 - Pizza Store</title>
+    <title>Pizza Store</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
-            color: #222;
-        }
-
-        /* NAVBAR */
-        .navbar {
-            background: #111;
-            color: white;
-            padding: 18px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            color: orange;
-            font-size: 30px;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links span {
-            color: white;
-            cursor: pointer;
-        }
-
-        .nav-links span:hover {
-            color: orange;
-        }
-
-        /* HERO */
-        .hero {
-            min-height: 500px;
-            background: linear-gradient(120deg, #111, #3b1d00);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            padding: 50px 8%;
-            gap: 30px;
-        }
-
-        .hero-text {
-            max-width: 550px;
-        }
-
-        .hero-text h4 {
-            font-size: 28px;
-            font-style: italic;
-            margin: 0;
-        }
-
-        .hero-text h1 {
-            font-size: 65px;
-            margin: 10px 0;
-        }
-
-        .hero-text p {
-            color: orange;
-            font-size: 22px;
-        }
-
-        .menu-btn {
-            padding: 13px 25px;
-            border: 2px solid orange;
-            border-radius: 30px;
-            background: orange;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .hero img {
-            width: 400px;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 5px solid white;
-        }
-
-        /* PIZZA SECTION */
-        .section {
-            padding: 45px 7%;
-        }
-
-        .section h2 {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 35px;
-        }
-
-        .pizza-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-        }
-
-        .pizza-card {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
-            transition: 0.3s;
-        }
-
-        .pizza-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .pizza-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .pizza-card h3 {
-            margin: 12px 0 5px;
-        }
-
-        .price {
-            color: #e67e00;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 8px;
-        }
-
-        .cart-btn {
-            background: #007bff;
-        }
-
-        .buy-btn {
-            background: #e63946;
-        }
-
-        /* CART */
-        #cart {
-            display: none;
-            background: white;
-            margin: 30px 7%;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
-        }
-
-        #cart h2 {
-            text-align: center;
-        }
-
-        #cartItems {
-            list-style: none;
-            padding: 0;
-        }
-
-        #cartItems li {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        #total {
-            text-align: center;
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        /* LOGIN */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            inset: 0;
-            background: rgba(0,0,0,0.7);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .login-box {
-            background: white;
-            width: 330px;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .login-box h2 {
-            color: #e67e00;
-        }
-
-        .login-box input {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .login-box button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            background: orange;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 700px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 45px;
-            }
-
-            .hero img {
-                width: 280px;
-                height: 280px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="logo">pizz0 🍕</div>
+    <!-- =========================
+         NAVIGATION BAR
+    ========================== -->
 
-        <div class="nav-links">
-            <span onclick="showMenu()">Tasty</span>
-            <span onclick="showMenu()">Spicy</span>
-            <span onclick="showMenu()">Delicious</span>
-            <span onclick="showCart()">🛒 Cart</span>
-        </div>
-    </nav>
+    <div class="main">
 
+        <div class="navbar">
 
-    <!-- HERO SECTION -->
-    <section class="hero">
+            <div class="nav-1">
 
-        <div class="hero-text">
-            <h4>Are You Hungry?</h4>
+                <div class="logo">pizz0</div>
 
-            <h1>Don't Wait.</h1>
+                <ul class="links">
+                    <li>Tasty</li>
+                    <li>Spicy</li>
+                    <li>Delicious</li>
+                    <li>Yummy</li>
+                </ul>
 
-            <p>Let's start to order food now!</p>
-
-            <button class="menu-btn" onclick="showMenu()">
-                Check Out Menu
-            </button>
-        </div>
-
-        <img
-            src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80"
-            alt="Pizza">
-    </section>
-
-
-    <!-- PIZZA MENU -->
-    <section class="section" id="menu">
-
-        <h2>🍕 Our Pizzas</h2>
-
-        <div class="pizza-grid">
-
-            <div class="pizza-card">
-                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80">
-                <h3>Margherita</h3>
-                <p class="price">₹199</p>
-                <button class="btn cart-btn" onclick="addToCart('Margherita',199)">
-                    Add to Cart
-                </button>
-                <button class="btn buy-btn" onclick="buyNow('Margherita',199)">
-                    Buy Now
-                </button>
             </div>
 
-            <div class="pizza-card">
-                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=500&q=80">
-                <h3>Pepperoni</h3>
-                <p class="price">₹299</p>
-                <button class="btn cart-btn" onclick="addToCart('Pepperoni',299)">
-                    Add to Cart
-                </button>
-                <button class="btn buy-btn" onclick="buyNow('Pepperoni',299)">
-                    Buy Now
-                </button>
-            </div>
-
-            <div class="pizza-card">
-                <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=500&q=80">
-                <h3>Farmhouse</h3>
-                <p class="price">₹249</p>
-                <button class="btn cart-btn" onclick="addToCart('Farmhouse',249)">
-                    Add to Cart
-                </button>
-                <button class="btn buy-btn" onclick="buyNow('Farmhouse',249)">
-                    Buy Now
-                </button>
-            </div>
-
-            <div class="pizza-card">
-                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=80">
-                <h3>Cheese Burst</h3>
-                <p class="price">₹349</p>
-                <button class="btn cart-btn" onclick="addToCart('Cheese Burst',349)">
-                    Add to Cart
-                </button>
-                <button class="btn buy-btn" onclick="buyNow('Cheese Burst',349)">
-                    Buy Now
-                </button>
-            </div>
-
-            <div class="pizza-card">
-                <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80">
-                <h3>Veggie Delight</h3>
-                <p class="price">₹269</p>
-                <button class="btn cart-btn" onclick="addToCart('Veggie Delight',269)">
-                    Add to Cart
-                </button>
-                <button class="btn buy-btn" onclick="buyNow('Veggie Delight',269)">
-                    Buy Now
-                </button>
-            </div>
-
-            <div class="pizza-card">
-                <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=500&q=80">
-                <h3>Spicy Chicken</h3>
-                <p class="price">₹329</p>
-                <button class="btn cart-btn" onclick="addToCart('Spicy Chicken',329)">
-                    Add to Cart
-                </button>
-                <button class="btn buy-btn" onclick="buyNow('Spicy Chicken',329)">
-                    Buy Now
-                </button>
+            <div class="icons">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-bars"></i>
             </div>
 
         </div>
-    </section>
 
 
-    <!-- CART -->
-    <div id="cart">
+        <!-- =========================
+             HERO SECTION
+        ========================== -->
 
-        <h2>🛒 Cart Summary</h2>
+        <div class="hero">
 
-        <ul id="cartItems"></ul>
+            <div class="left">
 
-        <p id="total">Total: ₹0</p>
+                <span class="left1">
+                    Are You Hungry?
+                </span>
+
+                <span class="left2">
+                    Don't Wait.
+                </span>
+
+                <span class="left3">
+                    Let's start to order food now
+                </span>
+
+                <button class="left4"
+                        onclick="openLoginModal()">
+                    Check Out Menu
+                </button>
+
+            </div>
+
+
+            <div class="food" id="food"></div>
+
+        </div>
+
+
+        <!-- =========================
+             FOOD SELECTOR
+        ========================== -->
+
+        <div class="items">
+
+            <div id="food1"></div>
+            <div id="food2"></div>
+            <div id="food3"></div>
+            <div id="food4"></div>
+
+        </div>
 
     </div>
 
 
-    <!-- LOGIN MODAL -->
-    <div class="modal" id="loginModal">
+    <!-- =========================
+         LOGIN MODAL
+    ========================== -->
 
-        <div class="login-box">
+    <div id="loginModal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close"
+                  onclick="closeLoginModal()">
+                &times;
+            </span>
 
             <h2>Login to Pizz0</h2>
 
             <input
                 type="text"
-                id="username"
-                placeholder="Username">
+                id="modalUsername"
+                placeholder="Username"
+            >
 
             <input
                 type="password"
-                id="password"
-                placeholder="Password">
+                id="modalPassword"
+                placeholder="Password"
+            >
 
             <button onclick="login()">
                 Login
@@ -428,150 +129,337 @@
     </div>
 
 
-    <!-- FOOTER -->
-    <footer>
-        <p>🍕 Pizz0 - Pizza Store E-Commerce</p>
-        <p>Built using HTML, CSS and JavaScript</p>
-    </footer>
+    <!-- =========================
+         PIZZA SECTION
+    ========================== -->
+
+    <section id="pizzaSection">
+
+        <h2>🍕 Our Pizzas</h2>
+
+        <div class="pizza-grid">
 
 
-    <script>
+            <!-- Pizza 1 -->
 
-        /* CART */
-        let cart = [];
+            <div class="pizza-card">
 
-        function addToCart(name, price) {
+                <img
+                    src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868918.jpg"
+                    alt="Margherita"
+                >
 
-            cart.push({
-                name: name,
-                price: price
-            });
+                <h3>Margherita</h3>
 
-            updateCart();
+                <p>₹199</p>
 
-            alert(name + " added to cart!");
-        }
+            </div>
 
 
-        function updateCart() {
+            <!-- Pizza 2 -->
 
-            const cartBox = document.getElementById("cart");
+            <div class="pizza-card">
 
-            const itemList = document.getElementById("cartItems");
+                <img
+                    src="https://img.freepik.com/free-photo/thinly-sliced-pepperoni-is-popular-pizza-topping-american-style-pizzerias-isolated-white-background-still-life_639032-229.jpg"
+                    alt="Farmhouse"
+                >
 
-            const totalDisplay = document.getElementById("total");
+                <h3>Farmhouse</h3>
 
-            itemList.innerHTML = "";
+                <p>₹249</p>
 
-            let total = 0;
-
-            cart.forEach(function(item) {
-
-                const li = document.createElement("li");
-
-                li.textContent =
-                    item.name + " - ₹" + item.price;
-
-                itemList.appendChild(li);
-
-                total += item.price;
-
-            });
-
-            totalDisplay.textContent =
-                "Total: ₹" + total;
-
-            cartBox.style.display =
-                cart.length > 0 ? "block" : "none";
-        }
+            </div>
 
 
-        /* BUY NOW */
-        function buyNow(name, price) {
+            <!-- Pizza 3 -->
 
-            const address = prompt(
-                "Enter your delivery address:"
-            );
+            <div class="pizza-card">
 
-            if (address && address.trim() !== "") {
+                <img
+                    src="https://img.freepik.com/free-photo/delicious-italian-pizza-with-tomato-olives-pepperoni-mushrooms-top-view-isolated-white-background-still-life-copy-space_639032-299.jpg"
+                    alt="Peppy Paneer"
+                >
 
-                alert(
-                    "Order placed successfully!\n\n" +
-                    "Pizza: " + name +
-                    "\nPrice: ₹" + price +
-                    "\nAddress: " + address
-                );
+                <h3>Peppy Paneer</h3>
 
-            } else {
+                <p>₹299</p>
 
-                alert("Order cancelled. Address is required.");
-
-            }
-        }
+            </div>
 
 
-        /* MENU */
-        function showMenu() {
+            <!-- Pizza 4 -->
 
-            document.getElementById("menu")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
+            <div class="pizza-card">
 
-        }
+                <img
+                    src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868964.jpg"
+                    alt="Veggie Delight"
+                >
 
+                <h3>Veggie Delight</h3>
 
-        /* CART */
-        function showCart() {
+                <p>₹269</p>
 
-            const cartBox =
-                document.getElementById("cart");
-
-            if (cart.length === 0) {
-
-                alert("Your cart is empty.");
-
-            } else {
-
-                cartBox.scrollIntoView({
-                    behavior: "smooth"
-                });
-
-            }
-        }
+            </div>
 
 
-        /* LOGIN */
-        function login() {
+            <!-- Pizza 5 -->
 
-            const username =
-                document.getElementById("username").value;
+            <div class="pizza-card">
 
-            const password =
-                document.getElementById("password").value;
+                <img
+                    src="https://img.freepik.com/premium-photo/isolated-pizza-with-mushrooms-tomatoes_219193-8122.jpg"
+                    alt="Spicy Chicken"
+                >
 
-            if (
-                username === "admin" &&
-                password === "1234"
-            ) {
+                <h3>Spicy Chicken</h3>
 
-                alert("Login successful!");
+                <p>₹329</p>
 
-                document.getElementById("loginModal")
-                    .style.display = "none";
+            </div>
 
-            } else {
 
-                alert(
-                    "Invalid credentials!\n\n" +
-                    "Demo Username: admin\n" +
-                    "Demo Password: 1234"
-                );
+            <!-- Pizza 6 -->
 
-            }
-        }
+            <div class="pizza-card">
 
-    </script>
+                <img
+                    src="https://img.freepik.com/premium-photo/pepperoni-pizza-cheese-pizza-food-pizza-pizza-pepperoni-mozzarella-mozzarella-cheese-cheese_812450-2.jpg"
+                    alt="Pepperoni"
+                >
+
+                <h3>Pepperoni</h3>
+
+                <p>₹620</p>
+
+            </div>
+
+
+            <!-- Pizza 7 -->
+
+            <div class="pizza-card">
+
+                <img
+                    src="https://img.freepik.com/premium-psd/delicious-fast-food-burger-pizza-png-highquality-transparent-image-stock-commercial-use_1093584-252.jpg"
+                    alt="Cheese Burst"
+                >
+
+                <h3>Cheese Burst</h3>
+
+                <p>₹589</p>
+
+            </div>
+
+
+            <!-- Pizza 8 -->
+
+            <div class="pizza-card">
+
+                <img
+                    src="https://img.freepik.com/premium-photo/fresh-pizza-wooden-board-isolated-white_93675-109645.jpg"
+                    alt="Kudaval"
+                >
+
+                <h3>Kudaval</h3>
+
+                <p>₹450</p>
+
+            </div>
+
+
+            <!-- Pizza 9 -->
+
+            <div class="pizza-card">
+
+                <img
+                    src="https://img.freepik.com/premium-photo/isolated-pizza-with-meat-vegetables-white_219193-5970.jpg"
+                    alt="Ketharin"
+                >
+
+                <h3>Ketharin</h3>
+
+                <p>₹600</p>
+
+            </div>
+
+
+            <!-- Pizza 10 -->
+
+            <div class="pizza-card">
+
+                <img
+                    src="https://img.freepik.com/premium-psd/delicious-fast-food-burger-pizza-png-highquality-transparent-image-stock-commercial-use_1093584-233.jpg"
+                    alt="Belgium Choco"
+                >
+
+                <h3>Belgium Choco</h3>
+
+                <p>₹567</p>
+
+            </div>
+
+
+            <!-- Pizza 11 -->
+
+            <div class="pizza-card">
+
+                <img
+                    src="https://img.freepik.com/premium-photo/fresh-pizza-wooden-board-isolated-white_93675-111113.jpg"
+                    alt="Kunafa"
+                >
+
+                <h3>Kunafa</h3>
+
+                <p>₹500</p>
+
+            </div>
+
+
+            <!-- Pizza 12 -->
+
+            <div class="pizza-card">
+
+                <img
+                    src="https://img.freepik.com/premium-photo/ham-pizza_163782-2493.jpg"
+                    alt="Japanese"
+                >
+
+                <h3>Japanese</h3>
+
+                <p>₹350</p>
+
+            </div>
+
+
+            <!-- Pizza 13 -->
+
+            <div class="pizza-card">
+
+                <img
+                    src="https://img.freepik.com/free-photo/pizza-with-cheese-tomato-isolated-white-background-pizza-margarita-top-view-photo-menu_639032-301.jpg"
+                    alt="Chenidu"
+                >
+
+                <h3>Chenidu</h3>
+
+                <p>₹432</p>
+
+            </div>
+
+
+            <!-- Pizza 14 -->
+
+            <div class="pizza-card">
+
+                <img
+                    src="https://img.freepik.com/free-psd/top-view-delicious-pizza_23-2151868918.jpg"
+                    alt="Premium Pulp"
+                >
+
+                <h3>Premium Pulp</h3>
+
+                <p>₹680</p>
+
+            </div>
+
+
+            <!-- Pizza 15 -->
+
+            <div class="pizza-card">
+
+                <img
+                    src="https://img.freepik.com/premium-photo/isolated-pizza-with-minced-meat-tomatoes_219193-8131.jpg"
+                    alt="Neapolitan"
+                >
+
+                <h3>Neapolitan</h3>
+
+                <p>₹800</p>
+
+            </div>
+
+
+            <!-- Pizza 16 -->
+
+            <div class="pizza-card">
+
+                <img
+                    src="https://img.freepik.com/free-photo/chicken-pizza-with-bell-pepper-olives_140725-7233.jpg"
+                    alt="New York Pizza"
+                >
+
+                <h3>New York Pizza</h3>
+
+                <p>₹678</p>
+
+            </div>
+
+
+            <!-- Pizza 17 -->
+
+            <div class="pizza-card">
+
+                <img
+                    src="https://img.freepik.com/premium-photo/popular-pizza-topping-american-style-pizzerias-white_135427-4403.jpg"
+                    alt="Bagel Pizza"
+                >
+
+                <h3>Bagel Pizza</h3>
+
+                <p>₹390</p>
+
+            </div>
+
+
+            <!-- Pizza 18 -->
+
+            <div class="pizza-card">
+
+                <img
+                    src="https://img.freepik.com/free-psd/delicious-mushroom-tomato-pizza-slices_191095-84144.jpg"
+                    alt="Baked Ziti"
+                >
+
+                <h3>Baked Ziti</h3>
+
+                <p>₹321</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Today's Specials -->
+
+        <div class="specials-container">
+
+            <button
+                class="specials-button"
+                onclick="goToHomepage()">
+                Today's Specials
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CART SUMMARY
+    ========================== -->
+
+    <div id="cartSummary">
+
+        <h2>🛒 Cart Summary</h2>
+
+        <ul id="cartItems"></ul>
+
+        <h3>
+            Total: ₹<span id="cartTotal">0</span>
+        </h3>
+
+    </div>
 
 </body>
 </html>
