@@ -1,97 +1,72 @@
-/* =========================
-   HERO PIZZA CHANGE
-========================= */
+const slides = [
 
-function changePizza(image) {
+    "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80",
 
-    const heroPizza = document.getElementById("heroPizza");
+    "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=800&q=80",
 
-    heroPizza.src = image;
+    "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=80",
 
-    document.querySelectorAll(".food-option")
-        .forEach(option => option.classList.remove("active"));
+    "https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=800&q=80"
 
-    event.currentTarget.classList.add("active");
+];
+
+
+let currentSlide = 0;
+
+const heroImage = document.getElementById("heroImage");
+
+const dots = document.querySelectorAll(".dot");
+
+
+function changeSlide(index) {
+
+    currentSlide = index;
+
+    heroImage.style.opacity = "0";
+
+    setTimeout(() => {
+
+        heroImage.src = slides[index];
+
+        heroImage.style.opacity = "1";
+
+    }, 200);
+
+
+    dots.forEach((dot, i) => {
+
+        dot.classList.toggle(
+            "active",
+            i === index
+        );
+
+    });
 }
 
 
-/* =========================
-   CHECK OUT MENU
-========================= */
+/* AUTOMATIC SLIDER */
 
-function scrollToPizza() {
+setInterval(() => {
 
-    document.getElementById("pizzaSection")
+    currentSlide++;
+
+    if (currentSlide >= slides.length) {
+        currentSlide = 0;
+    }
+
+    changeSlide(currentSlide);
+
+}, 4000);
+
+
+/* CHECK OUT MENU */
+
+function scrollToMenu() {
+
+    document
+        .getElementById("menu")
         .scrollIntoView({
             behavior: "smooth"
         });
-}
 
-
-/* =========================
-   CART
-========================= */
-
-let cart = [];
-let total = 0;
-
-
-function addToCart(name, price) {
-
-    cart.push({
-        name: name,
-        price: price
-    });
-
-    total += price;
-
-    updateCart();
-
-    alert(name + " added to cart!");
-}
-
-
-function updateCart() {
-
-    const cartSummary =
-        document.getElementById("cartSummary");
-
-    const cartItems =
-        document.getElementById("cartItems");
-
-    const cartTotal =
-        document.getElementById("cartTotal");
-
-    cartSummary.style.display = "block";
-
-    cartItems.innerHTML = "";
-
-    cart.forEach((item, index) => {
-
-        const li =
-            document.createElement("li");
-
-        li.textContent =
-            `${item.name} - ₹${item.price}`;
-
-        cartItems.appendChild(li);
-    });
-
-    cartTotal.textContent = total;
-}
-
-
-/* =========================
-   BUY NOW
-========================= */
-
-function buyNow(name, price) {
-
-    alert(
-        "Thank you for choosing " +
-        name +
-        "! Your order amount is ₹" +
-        price
-    );
-}
 }
