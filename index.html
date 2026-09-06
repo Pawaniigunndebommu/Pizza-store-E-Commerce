@@ -92,7 +92,7 @@
 
         <img
             id="heroImg"
-            src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80"
+            src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=700&q=80"
             alt="Pizza"
         >
 
@@ -110,20 +110,24 @@
         data-image="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80">
     </button>
 
+
     <button
         class="dot"
         data-image="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80">
     </button>
 
-    <!-- 3RD ROUND - FIXED ONLY THIS PHOTO -->
-    <button
-        class="dot"
-        data-image="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80">
-    </button>
+
+    <!-- 3RD ROUND - FIXED -->
 
     <button
         class="dot"
         data-image="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=700&q=80">
+    </button>
+
+
+    <button
+        class="dot"
+        data-image="https://images.unsplash.com/photo-1593560708920-61dd98c8a48b?auto=format&fit=crop&w=700&q=80">
     </button>
 
 </div>
@@ -256,7 +260,7 @@
         <div class="pizza-card" data-name="Veggie Delight">
 
             <img
-                src="https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?auto=format&fit=crop&w=500&q=80"
+                src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80"
                 alt="Veggie Delight"
             >
 
@@ -358,7 +362,7 @@
         <div class="pizza-card" data-name="Cheese Burst">
 
             <img
-                src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80"
+                src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80"
                 alt="Cheese Burst"
             >
 
@@ -426,7 +430,7 @@
         <div class="pizza-card" data-name="Ketharin">
 
             <img
-                src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80"
+                src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80"
                 alt="Ketharin"
             >
 
@@ -494,7 +498,7 @@
         <div class="pizza-card" data-name="Kunafa">
 
             <img
-                src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80"
+                src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80"
                 alt="Kunafa"
             >
 
@@ -562,7 +566,7 @@
         <div class="pizza-card" data-name="Chenidu">
 
             <img
-                src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80"
+                src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80"
                 alt="Chenidu"
             >
 
@@ -658,6 +662,7 @@
 
         </div>
 
+
     </div>
 
 </section>
@@ -712,17 +717,20 @@
 <div id="message"></div>
 
 
+<!-- ================= JAVASCRIPT ================= -->
+
 <script src="script.js"></script>
 
 
-<!-- ================= PHOTO FIX ================= -->
+<!-- ================= IMAGE ERROR FIX ================= -->
 
 <script>
 
 document.addEventListener("DOMContentLoaded", function () {
 
     const fallbackImage =
-        "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80";
+        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=700&q=80";
+
 
     document.querySelectorAll("img").forEach(function (img) {
 
@@ -733,14 +741,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
-    });
 
-    document.querySelectorAll("img").forEach(function (img) {
-
-        if (
-            img.complete &&
-            img.naturalWidth === 0
-        ) {
+        if (img.complete && img.naturalWidth === 0) {
 
             img.onerror = null;
             img.src = fallbackImage;
