@@ -1,72 +1,296 @@
-const slides = [
-
-    "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80",
-
-    "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=800&q=80",
-
-    "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=80",
-
-    "https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=800&q=80"
-
-];
+// ===============================
+// PIZZ0 PIZZA STORE
+// ===============================
 
 
-let currentSlide = 0;
+// CART ARRAY
+let cart = [];
 
-const heroImage = document.getElementById("heroImage");
 
+// ===============================
+// 4 ROUND HERO SLIDER
+// ===============================
+
+const heroImg = document.getElementById("heroImg");
 const dots = document.querySelectorAll(".dot");
 
+dots.forEach((dot) => {
 
-function changeSlide(index) {
+    dot.addEventListener("click", function () {
 
-    currentSlide = index;
+        dots.forEach((d) => d.classList.remove("active"));
 
-    heroImage.style.opacity = "0";
+        this.classList.add("active");
 
-    setTimeout(() => {
+        heroImg.style.opacity = "0";
 
-        heroImage.src = slides[index];
-
-        heroImage.style.opacity = "1";
-
-    }, 200);
-
-
-    dots.forEach((dot, i) => {
-
-        dot.classList.toggle(
-            "active",
-            i === index
-        );
+        setTimeout(() => {
+            heroImg.src = this.dataset.image;
+            heroImg.style.opacity = "1";
+        }, 200);
 
     });
-}
+
+});
 
 
-/* AUTOMATIC SLIDER */
+// AUTO SLIDER
+
+let currentSlide = 0;
 
 setInterval(() => {
 
     currentSlide++;
 
-    if (currentSlide >= slides.length) {
+    if (currentSlide >= dots.length) {
         currentSlide = 0;
     }
 
-    changeSlide(currentSlide);
+    dots[currentSlide].click();
 
-}, 4000);
+}, 5000);
 
 
-/* CHECK OUT MENU */
+// ===============================
+// ADD TO CART
+// ===============================
 
-function scrollToMenu() {
+function addToCart(name, price) {
 
-    document
-        .getElementById("menu")
-        .scrollIntoView({
-            behavior: "smooth"
+    const existingItem = cart.find(item => item.name === name);
+
+    if (existingItem) {
+
+        existingItem.quantity++;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
         });
 
+    }
+
+    updateCart();
+
+    showMessage(name + " added to cart 🛒");
 }
+
+
+// ===============================
+// UPDATE CART
+// ===============================
+
+function updateCart() {
+
+    const cartCount = document.getElementById("cartCount");
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
+
+    let totalQuantity = 0;
+    let totalPrice = 0;
+
+    cart.forEach(item => {
+
+        totalQuantity += item.quantity;
+        totalPrice += item.price * item.quantity;
+
+    });
+
+    cartCount.textContent = totalQuantity;
+    cartTotal.textContent = totalPrice;
+
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML =
+            '<p class="empty-cart">Your cart is empty.</p>';
+
+        return;
+    }
+
+
+    cartItems.innerHTML = "";
+
+    cart.forEach((item, index) => {
+
+        const cartItem = document.createElement("div");
+
+        cartItem.className = "cart-item";
+
+        cartItem.innerHTML = `
+            <div>
+                <h4>${item.name}</h4>
+                <p>₹${item.price} × ${item.quantity}</p>
+            </div>
+
+            <button class="remove-btn"
+                onclick="removeFromCart(${index})">
+                Remove
+            </button>
+        `;
+
+        cartItems.appendChild(cartItem);
+
+    });
+
+}
+
+
+// ===============================
+// REMOVE FROM CART
+// ===============================
+
+function removeFromCart(index) {
+
+    cart.splice(index, 1);
+
+    updateCart();
+
+    showMessage("Item removed from cart");
+}
+
+
+// ===============================
+// BUY NOW
+// ===============================
+
+function buyNow(name, price) {
+
+    cart = [{
+        name: name,
+        price: price,
+        quantity: 1
+    }];
+
+    updateCart();
+
+    document.getElementById("cartPanel").classList.add("open");
+
+    showMessage("Ready to checkout 🛒");
+}
+
+
+// ===============================
+// CART OPEN
+// ===============================
+
+document.getElementById("cartBtn").addEventListener("click", () => {
+
+    document.getElementById("cartPanel").classList.add("open");
+
+});
+
+
+// ===============================
+// CART CLOSE
+// ===============================
+
+document.getElementById("closeCart").addEventListener("click", () => {
+
+    document.getElementById("cartPanel").classList.remove("open");
+
+});
+
+
+// ===============================
+// SEARCH
+// ===============================
+
+document.getElementById("searchBtn").addEventListener("click", () => {
+
+    document.getElementById("searchBox").classList.toggle("show");
+
+    document.getElementById("searchInput").focus();
+
+});
+
+
+// ===============================
+// SEARCH FILTER
+// ===============================
+
+document.getElementById("searchInput").addEventListener("input", function () {
+
+    const searchValue = this.value.toLowerCase();
+
+    const cards = document.querySelectorAll(".pizza-card");
+
+    cards.forEach(card => {
+
+        const name = card.dataset.name.toLowerCase();
+
+        if (name.includes(searchValue)) {
+
+            card.style.display = "block";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+});
+
+
+// ===============================
+// CHECKOUT
+// ===============================
+
+function checkout() {
+
+    if (cart.length === 0) {
+
+        showMessage("Your cart is empty!");
+
+        return;
+    }
+
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+    });
+
+    alert(
+        "Order placed successfully! 🍕\n\n" +
+        "Total Amount: ₹" + total +
+        "\n\nThank you for ordering from pizz0!"
+    );
+
+    cart = [];
+
+    updateCart();
+
+    document.getElementById("cartPanel").classList.remove("open");
+}
+
+
+// ===============================
+// MESSAGE
+// ===============================
+
+function showMessage(text) {
+
+    const message = document.getElementById("message");
+
+    message.textContent = text;
+
+    message.classList.add("show");
+
+    setTimeout(() => {
+
+        message.classList.remove("show");
+
+    }, 2000);
+
+}
+
+
+// INITIAL CART UPDATE
+
+updateCart();
