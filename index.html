@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pizz0 - Pizza Store</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #111;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: orange;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links span {
+            color: white;
+            cursor: pointer;
+        }
+
+        .nav-links span:hover {
+            color: orange;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 500px;
+            background: linear-gradient(120deg, #111, #3b1d00);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 50px 8%;
+            gap: 30px;
+        }
+
+        .hero-text {
+            max-width: 550px;
+        }
+
+        .hero-text h4 {
+            font-size: 28px;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .hero-text h1 {
+            font-size: 65px;
+            margin: 10px 0;
+        }
+
+        .hero-text p {
+            color: orange;
+            font-size: 22px;
+        }
+
+        .menu-btn {
+            padding: 13px 25px;
+            border: 2px solid orange;
+            border-radius: 30px;
+            background: orange;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .hero img {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+        }
+
+        /* PIZZA SECTION */
+        .section {
+            padding: 45px 7%;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 35px;
+        }
+
+        .pizza-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .pizza-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+            transition: 0.3s;
+        }
+
+        .pizza-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pizza-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .pizza-card h3 {
+            margin: 12px 0 5px;
+        }
+
+        .price {
+            color: #e67e00;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .cart-btn {
+            background: #007bff;
+        }
+
+        .buy-btn {
+            background: #e63946;
+        }
+
+        /* CART */
+        #cart {
+            display: none;
+            background: white;
+            margin: 30px 7%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+
+        #cart h2 {
+            text-align: center;
+        }
+
+        #cartItems {
+            list-style: none;
+            padding: 0;
+        }
+
+        #cartItems li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #total {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* LOGIN */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-box {
+            background: white;
+            width: 330px;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            color: #e67e00;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: orange;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 700px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 45px;
+            }
+
+            .hero img {
+                width: 280px;
+                height: 280px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">pizz0 🍕</div>
+
+        <div class="nav-links">
+            <span onclick="showMenu()">Tasty</span>
+            <span onclick="showMenu()">Spicy</span>
+            <span onclick="showMenu()">Delicious</span>
+            <span onclick="showCart()">🛒 Cart</span>
+        </div>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <div class="hero-text">
+            <h4>Are You Hungry?</h4>
+
+            <h1>Don't Wait.</h1>
+
+            <p>Let's start to order food now!</p>
+
+            <button class="menu-btn" onclick="showMenu()">
+                Check Out Menu
+            </button>
+        </div>
+
+        <img
+            src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80"
+            alt="Pizza">
+    </section>
+
+
+    <!-- PIZZA MENU -->
+    <section class="section" id="menu">
+
+        <h2>🍕 Our Pizzas</h2>
+
+        <div class="pizza-grid">
+
+            <div class="pizza-card">
+                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80">
+                <h3>Margherita</h3>
+                <p class="price">₹199</p>
+                <button class="btn cart-btn" onclick="addToCart('Margherita',199)">
+                    Add to Cart
+                </button>
+                <button class="btn buy-btn" onclick="buyNow('Margherita',199)">
+                    Buy Now
+                </button>
+            </div>
+
+            <div class="pizza-card">
+                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=500&q=80">
+                <h3>Pepperoni</h3>
+                <p class="price">₹299</p>
+                <button class="btn cart-btn" onclick="addToCart('Pepperoni',299)">
+                    Add to Cart
+                </button>
+                <button class="btn buy-btn" onclick="buyNow('Pepperoni',299)">
+                    Buy Now
+                </button>
+            </div>
+
+            <div class="pizza-card">
+                <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=500&q=80">
+                <h3>Farmhouse</h3>
+                <p class="price">₹249</p>
+                <button class="btn cart-btn" onclick="addToCart('Farmhouse',249)">
+                    Add to Cart
+                </button>
+                <button class="btn buy-btn" onclick="buyNow('Farmhouse',249)">
+                    Buy Now
+                </button>
+            </div>
+
+            <div class="pizza-card">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=80">
+                <h3>Cheese Burst</h3>
+                <p class="price">₹349</p>
+                <button class="btn cart-btn" onclick="addToCart('Cheese Burst',349)">
+                    Add to Cart
+                </button>
+                <button class="btn buy-btn" onclick="buyNow('Cheese Burst',349)">
+                    Buy Now
+                </button>
+            </div>
+
+            <div class="pizza-card">
+                <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80">
+                <h3>Veggie Delight</h3>
+                <p class="price">₹269</p>
+                <button class="btn cart-btn" onclick="addToCart('Veggie Delight',269)">
+                    Add to Cart
+                </button>
+                <button class="btn buy-btn" onclick="buyNow('Veggie Delight',269)">
+                    Buy Now
+                </button>
+            </div>
+
+            <div class="pizza-card">
+                <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=500&q=80">
+                <h3>Spicy Chicken</h3>
+                <p class="price">₹329</p>
+                <button class="btn cart-btn" onclick="addToCart('Spicy Chicken',329)">
+                    Add to Cart
+                </button>
+                <button class="btn buy-btn" onclick="buyNow('Spicy Chicken',329)">
+                    Buy Now
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CART -->
+    <div id="cart">
+
+        <h2>🛒 Cart Summary</h2>
+
+        <ul id="cartItems"></ul>
+
+        <p id="total">Total: ₹0</p>
+
+    </div>
+
+
+    <!-- LOGIN MODAL -->
+    <div class="modal" id="loginModal">
+
+        <div class="login-box">
+
+            <h2>Login to Pizz0</h2>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Username">
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password">
+
+            <button onclick="login()">
+                Login
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>🍕 Pizz0 - Pizza Store E-Commerce</p>
+        <p>Built using HTML, CSS and JavaScript</p>
+    </footer>
+
+
+    <script>
+
+        /* CART */
+        let cart = [];
+
+        function addToCart(name, price) {
+
+            cart.push({
+                name: name,
+                price: price
+            });
+
+            updateCart();
+
+            alert(name + " added to cart!");
+        }
+
+
+        function updateCart() {
+
+            const cartBox = document.getElementById("cart");
+
+            const itemList = document.getElementById("cartItems");
+
+            const totalDisplay = document.getElementById("total");
+
+            itemList.innerHTML = "";
+
+            let total = 0;
+
+            cart.forEach(function(item) {
+
+                const li = document.createElement("li");
+
+                li.textContent =
+                    item.name + " - ₹" + item.price;
+
+                itemList.appendChild(li);
+
+                total += item.price;
+
+            });
+
+            totalDisplay.textContent =
+                "Total: ₹" + total;
+
+            cartBox.style.display =
+                cart.length > 0 ? "block" : "none";
+        }
+
+
+        /* BUY NOW */
+        function buyNow(name, price) {
+
+            const address = prompt(
+                "Enter your delivery address:"
+            );
+
+            if (address && address.trim() !== "") {
+
+                alert(
+                    "Order placed successfully!\n\n" +
+                    "Pizza: " + name +
+                    "\nPrice: ₹" + price +
+                    "\nAddress: " + address
+                );
+
+            } else {
+
+                alert("Order cancelled. Address is required.");
+
+            }
+        }
+
+
+        /* MENU */
+        function showMenu() {
+
+            document.getElementById("menu")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+
+
+        /* CART */
+        function showCart() {
+
+            const cartBox =
+                document.getElementById("cart");
+
+            if (cart.length === 0) {
+
+                alert("Your cart is empty.");
+
+            } else {
+
+                cartBox.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }
+        }
+
+
+        /* LOGIN */
+        function login() {
+
+            const username =
+                document.getElementById("username").value;
+
+            const password =
+                document.getElementById("password").value;
+
+            if (
+                username === "admin" &&
+                password === "1234"
+            ) {
+
+                alert("Login successful!");
+
+                document.getElementById("loginModal")
+                    .style.display = "none";
+
+            } else {
+
+                alert(
+                    "Invalid credentials!\n\n" +
+                    "Demo Username: admin\n" +
+                    "Demo Password: 1234"
+                );
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>
